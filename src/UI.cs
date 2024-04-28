@@ -17,8 +17,7 @@ public partial class UI : Control
 
     public override void _Process(double delta)
     {
-        GD.Print(_timeDayUI);
         _hungerScale.Value = _entity._hungryValue;
-        _timeDayUI.Text = _dayNightCycle._timeDay;
+        //_timeDayUI.Text = _dayNightCycle._timeDay;
     }
 }
