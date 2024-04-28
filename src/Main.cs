@@ -1,33 +1,22 @@
+using System.Xml;
 using Godot;
 
-public partial class Main : Node2D
+public partial class Main : Node3D
 {
-    private Control _pause;
+    [Export]
+    public Vector3 SpawnPosition = new Vector3(0, 0, 0);
 
     public override void _Ready()
     {
-        _pause = GetNode<Control>("Pause");
+        Create_player();
     }
 
-    public override void _Process(double delta)
-    {
-        if (Input.IsActionJustPressed("Escape") && !_pause.Visible)
-        {
-            _pause.Visible = true;
-        }
-        else if (Input.IsActionJustPressed("Escape") && _pause.Visible)
-        {
-            _pause.Visible = false;
-        }
-    }
+    public override void _Process(double delta) { }
 
-    public void OnMainMenuButtonPressed()
+    public void Create_player()
     {
-        GetTree().ChangeSceneToFile("res://scenes/MainMenu.tscn");
-    }
-
-    public void OnResumeButtonPressed()
-    {
-        _pause.Visible = false;
+        Player player = GD.Load<PackedScene>("res://scenes/Player.tscn").Instantiate<Player>();
+        player.Position = SpawnPosition;
+        AddChild(player);
     }
 }

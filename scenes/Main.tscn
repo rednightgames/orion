@@ -1,17 +1,18 @@
 [gd_scene load_steps=4 format=3 uid="uid://ykpdkwi1bhfp"]
 
+[ext_resource type="Script" path="res://src/Main.cs" id="1_kc2wc"]
 [ext_resource type="PackedScene" uid="uid://ey7rl5klok2w" path="res://scenes/Tree.tscn" id="2_h0k0k"]
-[ext_resource type="PackedScene" uid="uid://b4g33iclle08j" path="res://scenes/Player.tscn" id="2_mh8f4"]
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_8a82o"]
+[ext_resource type="PackedScene" uid="uid://dppscjxu2y6vx" path="res://scenes/Pause.tscn" id="3_tsrnd"]
 
 [node name="Node3D" type="Node3D"]
+script = ExtResource("1_kc2wc")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.942475, -0.132787, -0.306771, 0.334272, 0.37916, 0.862844, 0.00174049, -0.915754, 0.401736, 0, 4.68828, 2.98106)
+shadow_enabled = true
 
 [node name="Node3D" parent="." instance=ExtResource("2_h0k0k")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.03197, 0.193111, -0.260707)
-
-[node name="Player" parent="." instance=ExtResource("2_mh8f4")]
-transform = Transform3D(2.50708, 0, 0, 0, 2.50708, 0, 0, 0, 2.50708, 3.47888, 0.0962224, -0.876443)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.032, 0, -0.261)
 
 [node name="Node3D2" parent="." instance=ExtResource("2_h0k0k")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, -3)
@@ -21,9 +22,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 3)
 
 [node name="Node3D4" type="Node3D" parent="."]
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Node3D4"]
-transform = Transform3D(16.1, 0, 0, 0, -0.1, 0, 0, 0, 15.86, 0, -0.3, 0)
-disable_mode = 1
+[node name="GridMap" type="GridMap" parent="."]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Node3D4/StaticBody3D"]
-shape = SubResource("BoxShape3D_8a82o")
+[node name="Pause" parent="." instance=ExtResource("3_tsrnd")]
+visible = false
+anchors_preset = -1

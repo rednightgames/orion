@@ -1,23 +1,23 @@
-[gd_scene load_steps=4 format=3 uid="uid://ey7rl5klok2w"]
+[gd_scene load_steps=3 format=3 uid="uid://ey7rl5klok2w"]
 
 [ext_resource type="Texture2D" uid="uid://c3emd8nalo3k4" path="res://assets/objects/grass_biom_things.png" id="1_2l6fm"]
-[ext_resource type="Script" path="res://src/Tree.cs" id="1_4yugd"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_w6gsv"]
 size = Vector3(0.125, 0.516, 0.125)
 
 [node name="Node3D" type="Node3D"]
-script = ExtResource("1_4yugd")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="."]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0.5, 0)
 shape = SubResource("BoxShape3D_w6gsv")
 
 [node name="Sprite3D" type="Sprite3D" parent="StaticBody3D"]
 transform = Transform3D(3.28386, 0, 0, 0, 4.30225, 0, 0, 0, 9.6058, 0, 0, 0)
 rotation_order = 0
+centered = false
+offset = Vector2(-16, -1)
 billboard = 1
 shaded = true
 alpha_cut = 2

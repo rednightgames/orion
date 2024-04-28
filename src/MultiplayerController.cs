@@ -60,6 +60,12 @@ public partial class MultiplayerController : Node2D
     private void ConnectedToServer()
     {
         GD.Print("Connection to server");
+        RpcId(
+            1,
+            "SendPlayerInformation",
+            GetNode<LineEdit>("NameLine").Text,
+            Multiplayer.GetUniqueId()
+        );
     }
 
     private void PeerDisconnected(long id)
@@ -117,6 +123,12 @@ public partial class MultiplayerController : Node2D
         Multiplayer.MultiplayerPeer = peer;
         GD.Print("waiting for player");
         log.Text += "Waiting for player Port: " + port + "\n";
+        SendPlayerInformation(GetNode<LineEdit>("NameLine").Text, 1);
+    }
+
+    public void _on_start_button_pressed()
+    {
+        Rpc("StartGame");
     }
 
     public void OnBackButtonPressed()
@@ -127,4 +139,41 @@ public partial class MultiplayerController : Node2D
         }
         GetTree().ChangeSceneToFile("res://scenes/MainMenu.tscn");
     }
+
+    [Rpc(
+        MultiplayerApi.RpcMode.AnyPeer,
+        CallLocal = true,
+        TransferMode = MultiplayerPeer.TransferModeEnum.Reliable
+    )]
+    private void StartGame()
+    {
+        foreach (var item in GameManager.Players)
+        {
+            GD.Print(item.Name + "is playing");
+        }
+        var scene = ResourceLoader
+            .Load<PackedScene>("res://scenes/Main.tscn")
+            .Instantiate<Node3D>();
+        GetTree().Root.AddChild(scene);
+        this.Hide();
+    }
+
+    [Rpc(MultiplayerApi.RpcMode.AnyPeer)]
+    private void SendPlayerInformation(string name, int id)
+    {
+        PlayerInfo playerInfo = new PlayerInfo() { Name = name, Id = id };
+        if (!GameManager.Players.Contains(playerInfo))
+        {
+            GameManager.Players.Add(playerInfo);
+        }
+        if (Multiplayer.IsServer())
+        {
+            foreach (var item in GameManager.Players)
+            {
+                Rpc("SendPlayerInformation", name, id);
+            }
+        }
+    }
+
+    public override void _Process(double delta) { }
 }

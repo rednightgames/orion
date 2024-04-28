@@ -6,6 +6,7 @@ public partial class Player : CharacterBody3D
     private AnimationTree Anim;
     private AnimationNodeStateMachinePlayback StateMachine;
     private PlayerCamera Camera;
+    private Vector3 _rotation;
 
     public override void _Ready()
     {
@@ -50,12 +51,14 @@ public partial class Player : CharacterBody3D
 
         if (Input.IsActionJustPressed("Q"))
         {
-            Rotation = new Vector3(0, Rotation.Y - 45 * Mathf.Pi / 180, 0);
+            _rotation = new Vector3(0, Rotation.Y - 45 * Mathf.Pi / 180, 0);
         }
         if (Input.IsActionJustPressed("E"))
         {
-            Rotation = new Vector3(0, Rotation.Y + 45 * Mathf.Pi / 180, 0);
+            _rotation = new Vector3(0, Rotation.Y + 45 * Mathf.Pi / 180, 0);
         }
+        Tween tween_rotation = GetTree().CreateTween();
+        tween_rotation.TweenProperty(this, "rotation", _rotation, 0.3);
 
         if (inputDirection == Vector3.Zero)
         {
