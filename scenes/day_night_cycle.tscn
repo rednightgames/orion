@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bl87xmfiecoj8"]
+
+[ext_resource type="Script" path="res://src/DayNightCycle.cs" id="1_mxp5n"]
+
+[node name="DayNightCycle" type="Node3D"]
+script = ExtResource("1_mxp5n")
