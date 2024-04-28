@@ -18,12 +18,19 @@ public partial class DayNightCycle : Node3D
     private int cycletimer;
     private int durationcycle;
     public int countday = 1;
+    private DirectionalLight3D _dirLight;
+    private WorldEnvironment _worldEnv;
+    private Tween _dirLightTween;
+    private Tween _worldEnvTween;
+    private double _transition = 1;
 
     public override void _Ready()
     {
         leveltime = 0;
         cycletimer = 0;
         durationcycle = durationday + durationevening + durationnight;
+        _dirLight = GetNode<DirectionalLight3D>("../DirectionalLight3D");
+        _worldEnv = GetNode<WorldEnvironment>("../WorldEnvironment");
     }
 
     public override void _Process(double delta)
@@ -65,14 +72,36 @@ public partial class DayNightCycle : Node3D
         cycletimer++;
     }
 
-    public void day_state() { }
+    public void day_state()
+    {
+        TransitionLight(1, 1);
+    }
 
-    public void evening_state() { }
+    public void evening_state()
+    {
+        TransitionLight(0.3, 0.3);
+    }
 
-    public void night_state() { }
+    public void night_state()
+    {
+        TransitionLight(0.01, 0);
+    }
 
     public void ChangeState(TimeState newState)
     {
         state = newState;
+    }
+
+    public void TransitionLight(double lightEnergy, double bgEnergy)
+    {
+        _dirLightTween = CreateTween();
+        _dirLightTween.TweenProperty(_dirLight, "light_energy", lightEnergy, _transition);
+        _worldEnvTween = CreateTween();
+        _worldEnvTween.TweenProperty(
+            _worldEnv.Environment,
+            "background_energy_multiplier",
+            lightEnergy,
+            _transition
+        );
     }
 }
