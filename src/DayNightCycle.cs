@@ -23,6 +23,7 @@ public partial class DayNightCycle : Node3D
     private Tween _dirLightTween;
     private Tween _worldEnvTween;
     private double _transition = 1;
+    public string _timeDay;
 
     public override void _Ready()
     {
@@ -74,16 +75,19 @@ public partial class DayNightCycle : Node3D
 
     public void day_state()
     {
+        _timeDay = "DAY";
         TransitionLight(1, 1);
     }
 
     public void evening_state()
     {
+        _timeDay = "EVENING";
         TransitionLight(0.3, 0.3);
     }
 
     public void night_state()
     {
+        _timeDay = "NIGHT";
         TransitionLight(0.01, 0);
     }
 
