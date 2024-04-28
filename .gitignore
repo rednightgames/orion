@@ -1,2 +1,26 @@
+### MacOS ###
+.DS_Store
+.AppleDouble
+.LSOverride
+
+### Linux ###
+*~
+.fuse_hidden*
+
+### Windows ###
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+ehthumbs_vista.db
+[Dd]esktop.ini
+
+### IDE's ###
+.vscode
+.idea
+
+### Logs ###
+logs
+*.log
+
 # Godot 4+ specific ignores
 .godot/

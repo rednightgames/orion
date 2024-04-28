@@ -1,15 +1,33 @@
 using Godot;
-using System;
 
-public partial class Main : Node
+public partial class Main : Node2D
 {
-	// Called when the node enters the scene tree for the first time.
-	public override void _Ready()
-	{
-	}
+    private Control _pause;
 
-	// Called every frame. 'delta' is the elapsed time since the previous frame.
-	public override void _Process(double delta)
-	{
-	}
+    public override void _Ready()
+    {
+        _pause = GetNode<Control>("Pause");
+    }
+
+    public override void _Process(double delta)
+    {
+        if (Input.IsActionJustPressed("Escape") && !_pause.Visible)
+        {
+            _pause.Visible = true;
+        }
+        else if (Input.IsActionJustPressed("Escape") && _pause.Visible)
+        {
+            _pause.Visible = false;
+        }
+    }
+
+    public void OnMainMenuButtonPressed()
+    {
+        GetTree().ChangeSceneToFile("res://scenes/MainMenu.tscn");
+    }
+
+    public void OnResumeButtonPressed()
+    {
+        _pause.Visible = false;
+    }
 }

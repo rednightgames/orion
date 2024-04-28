@@ -1,0 +1,65 @@
+[gd_scene load_steps=2 format=3 uid="uid://c0epml3ilj2j3"]
+
+[ext_resource type="Script" path="res://src/MultiplayerController.cs" id="1_55fbh"]
+
+[node name="Lobby" type="Node2D"]
+script = ExtResource("1_55fbh")
+
+[node name="HostButton" type="Button" parent="."]
+offset_left = 38.0
+offset_top = 48.0
+offset_right = 287.0
+offset_bottom = 110.0
+text = "HOST"
+
+[node name="JoinButton" type="Button" parent="."]
+offset_left = 38.0
+offset_top = 146.0
+offset_right = 287.0
+offset_bottom = 208.0
+text = "JOIN"
+
+[node name="StartButton" type="Button" parent="."]
+offset_left = 870.0
+offset_top = 544.0
+offset_right = 1119.0
+offset_bottom = 606.0
+text = "START"
+
+[node name="PortLine" type="LineEdit" parent="."]
+offset_left = 781.0
+offset_top = 95.0
+offset_right = 921.0
+offset_bottom = 126.0
+
+[node name="IPLine" type="LineEdit" parent="."]
+offset_left = 499.0
+offset_top = 95.0
+offset_right = 764.0
+offset_bottom = 126.0
+text = "127.0.0.1"
+
+[node name="NameLine" type="LineEdit" parent="."]
+offset_left = 499.0
+offset_top = 46.0
+offset_right = 921.0
+offset_bottom = 77.0
+
+[node name="Label" type="Label" parent="."]
+offset_left = 73.0
+offset_top = 320.0
+offset_right = 478.0
+offset_bottom = 375.0
+
+[node name="BackButton" type="Button" parent="."]
+offset_left = 20.0
+offset_top = 560.0
+offset_right = 100.0
+offset_bottom = 620.0
+text = "BACK"
+
+[connection signal="button_down" from="HostButton" to="." method="OnHostButtonDown"]
+[connection signal="button_down" from="JoinButton" to="." method="OnJoinButtonDown"]
+[connection signal="text_changed" from="PortLine" to="." method="OnPortLineTextChanged"]
+[connection signal="text_changed" from="IPLine" to="." method="OnIpLineTextChanged"]
+[connection signal="pressed" from="BackButton" to="." method="OnBackButtonPressed"]
