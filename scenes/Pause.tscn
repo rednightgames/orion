@@ -1,0 +1,81 @@
+[gd_scene load_steps=5 format=3 uid="uid://dppscjxu2y6vx"]
+
+[ext_resource type="Script" path="res://src/Pause.cs" id="1_vgbj0"]
+[ext_resource type="Texture2D" uid="uid://dch86v2hgf3s5" path="res://assets/ui/ui_buttons.png" id="2_ammq0"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_63j2y"]
+atlas = ExtResource("2_ammq0")
+region = Rect2(163, 178, 90, 27)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bpvwp"]
+atlas = ExtResource("2_ammq0")
+region = Rect2(259, 180, 90, 25)
+
+[node name="Pause" type="Control"]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_vgbj0")
+
+[node name="BlackOverlay" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.282353)
+metadata/_edit_use_anchors_ = true
+
+[node name="Resume" type="TextureButton" parent="."]
+texture_filter = 1
+layout_mode = 0
+offset_left = 70.0
+offset_top = 407.0
+offset_right = 238.0
+offset_bottom = 463.0
+texture_normal = SubResource("AtlasTexture_63j2y")
+texture_pressed = SubResource("AtlasTexture_bpvwp")
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="Resume"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.462745, 0.462745, 0.462745, 1)
+theme_override_font_sizes/font_size = 35
+text = "RESUME"
+horizontal_alignment = 1
+
+[node name="Exit" type="TextureButton" parent="."]
+texture_filter = 1
+layout_mode = 0
+offset_left = 70.0
+offset_top = 472.0
+offset_right = 238.0
+offset_bottom = 528.0
+texture_normal = SubResource("AtlasTexture_63j2y")
+texture_pressed = SubResource("AtlasTexture_bpvwp")
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="Exit"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.462745, 0.462745, 0.462745, 1)
+theme_override_font_sizes/font_size = 35
+text = "EXIT"
+horizontal_alignment = 1
+
+[connection signal="pressed" from="Resume" to="." method="_on_resume_pressed"]
+[connection signal="pressed" from="Exit" to="." method="_on_exit_pressed"]

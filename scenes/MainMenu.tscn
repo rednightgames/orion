@@ -1,0 +1,81 @@
+[gd_scene load_steps=7 format=3 uid="uid://bc33x8wxt5xuy"]
+
+[ext_resource type="Script" path="res://src/MainMenu.cs" id="1_v4318"]
+[ext_resource type="Texture2D" uid="uid://dch86v2hgf3s5" path="res://assets/ui/ui_buttons.png" id="2_wrnr7"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m3wqd"]
+atlas = ExtResource("2_wrnr7")
+region = Rect2(163, 210, 90, 27)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c7mjc"]
+atlas = ExtResource("2_wrnr7")
+region = Rect2(259, 210, 90, 27)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7213a"]
+atlas = ExtResource("2_wrnr7")
+region = Rect2(163, 178, 90, 27)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k72f6"]
+atlas = ExtResource("2_wrnr7")
+region = Rect2(259, 178, 90, 27)
+
+[node name="MainMenu" type="Node2D"]
+script = ExtResource("1_v4318")
+
+[node name="PlayButton" type="TextureButton" parent="."]
+texture_filter = 1
+offset_left = 46.0
+offset_top = 367.0
+offset_right = 246.0
+offset_bottom = 429.0
+texture_normal = SubResource("AtlasTexture_m3wqd")
+texture_pressed = SubResource("AtlasTexture_c7mjc")
+stretch_mode = 0
+
+[node name="ExitButton" type="TextureButton" parent="."]
+texture_filter = 1
+offset_left = 46.0
+offset_top = 455.0
+offset_right = 246.0
+offset_bottom = 517.0
+texture_normal = SubResource("AtlasTexture_7213a")
+texture_pressed = SubResource("AtlasTexture_k72f6")
+stretch_mode = 0
+
+[node name="ExitText" type="Label" parent="ExitButton"]
+layout_mode = 0
+offset_right = 199.0
+offset_bottom = 61.0
+theme_override_colors/font_color = Color(0.713726, 0.537255, 0.384314, 1)
+theme_override_font_sizes/font_size = 39
+text = "EXIT"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SPMP" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="SPButton" type="Button" parent="SPMP"]
+layout_mode = 0
+offset_left = 263.0
+offset_top = 335.0
+offset_right = 462.0
+offset_bottom = 377.0
+text = "SINGLEPLAYER"
+
+[node name="MPButton" type="Button" parent="SPMP"]
+layout_mode = 0
+offset_left = 263.0
+offset_top = 403.0
+offset_right = 462.0
+offset_bottom = 445.0
+text = "MULTIPLAYER"
+
+[connection signal="pressed" from="PlayButton" to="." method="OnPlayButtonPressed"]
+[connection signal="pressed" from="ExitButton" to="." method="OnExitButtonPressed"]
+[connection signal="pressed" from="SPMP/SPButton" to="." method="OnSPButtonPressed"]
+[connection signal="pressed" from="SPMP/MPButton" to="." method="OnMPButtonPressed"]
