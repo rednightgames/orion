@@ -1,19 +1,30 @@
+using System.Collections.Generic;
 using Godot;
 
 public partial class Player : CharacterBody3D
 {
-    public float speed = 160.0f;
-    private const int cameraRotationAngle = 45;
-    private const float cameraRotationDuration = 0.3f;
+    public float speed;
+    private const int CameraRotationAngle = 45;
+    private const float CameraRotationDuration = 0.3f;
     private AnimationTree _anim;
     private AnimationNodeStateMachinePlayback _stateMachine;
     private PlayerCamera _playerCamera;
     private Vector3 _rotation;
     private Tween _cameraTween;
     private bool _isCameraRotating = false;
+    private Inventory _inventory;
+    private Dictionary<string, object> _initialPropertyValues = new Dictionary<string, object> { };
+
+    internal void Init(float speed)
+    {
+        this.speed = speed;
+
+        _initialPropertyValues.Add(nameof(speed), speed);
+    }
 
     public override void _Ready()
     {
+        _inventory = new Inventory(this);
         _anim = GetNode<AnimationTree>("AnimationTree");
         _stateMachine = (AnimationNodeStateMachinePlayback)_anim.Get("parameters/playback");
         _playerCamera = GetNode<PlayerCamera>("PlayerCamera");
@@ -26,9 +37,11 @@ public partial class Player : CharacterBody3D
             switch (mouseEvent.ButtonIndex)
             {
                 case MouseButton.WheelUp:
+                    _inventory.SetActiveSlot(4);
                     _playerCamera.SetCameraZoom(_playerCamera.Zoom * 1.2f);
                     break;
                 case MouseButton.WheelDown:
+                    _inventory.SetActiveSlot(3);
                     _playerCamera.SetCameraZoom(_playerCamera.Zoom * 0.8f);
                     break;
             }
@@ -70,26 +83,42 @@ public partial class Player : CharacterBody3D
 
         if (Input.IsActionPressed("Q") && !_isCameraRotating)
         {
-            RotateCamera(-cameraRotationAngle);
+            _inventory.SetActiveSlot(0);
+            RotateCamera(-CameraRotationAngle);
         }
         else if (Input.IsActionPressed("E") && !_isCameraRotating)
         {
-            RotateCamera(cameraRotationAngle);
+            _inventory.SetActiveSlot(1);
+            RotateCamera(CameraRotationAngle);
         }
+    }
+
+    public void ResetStats()
+    {
+        speed = (float)_initialPropertyValues[nameof(speed)];
     }
 
     private void RotateCamera(float angle)
     {
         _rotation.Y += Mathf.DegToRad(angle);
+        // Dispose existing tween before creating a new one
+        DisposeCameraTween();
         _cameraTween = CreateTween().SetParallel(true);
+        // Tween camera rotation
         _cameraTween.TweenProperty(
             this,
             "rotation",
             new Vector3(Rotation.X, _rotation.Y, Rotation.Z),
-            cameraRotationDuration
+            CameraRotationDuration
         );
         _isCameraRotating = true;
         _cameraTween.Connect("finished", new Callable(this, nameof(OnCameraRotationCompleted)));
+    }
+
+    private void DisposeCameraTween()
+    {
+        _cameraTween?.Dispose();
+        _cameraTween = null;
     }
 
     private void OnCameraRotationCompleted()

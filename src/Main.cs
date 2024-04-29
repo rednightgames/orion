@@ -16,6 +16,7 @@ public partial class Main : Node3D
     {
         Player player = GD.Load<PackedScene>("res://scenes/Player.tscn").Instantiate<Player>();
         player.Position = SpawnPosition;
+        player.Init(160.0f);
         AddChild(player);
     }
 }
