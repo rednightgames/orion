@@ -11,12 +11,15 @@ public partial class Player : CharacterBody3D
     private Vector3 _rotation;
     private Tween _cameraTween;
     private bool _isCameraRotating = false;
+    public int playerHealth = 10;
+    private HealthScale _healthScale;
 
     public override void _Ready()
     {
         _anim = GetNode<AnimationTree>("AnimationTree");
         _stateMachine = (AnimationNodeStateMachinePlayback)_anim.Get("parameters/playback");
         _playerCamera = GetNode<PlayerCamera>("PlayerCamera");
+        _healthScale = GetNode<HealthScale>("../UI/HealthScale");
     }
 
     public override void _Input(InputEvent @event)
@@ -37,6 +40,7 @@ public partial class Player : CharacterBody3D
 
     public override void _PhysicsProcess(double delta)
     {
+        _healthScale.playerHealth = playerHealth;
         Vector3 inputDirection = new Vector3(
             Input.GetActionStrength("move_right") - Input.GetActionStrength("move_left"),
             0,

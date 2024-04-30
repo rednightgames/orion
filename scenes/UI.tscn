@@ -1,0 +1,64 @@
+[gd_scene load_steps=5 format=3 uid="uid://o8vtl482qra0"]
+
+[ext_resource type="Script" path="res://src/HungerScale.cs" id="1_5hgbw"]
+[ext_resource type="Script" path="res://src/TimeOfDay.cs" id="2_arhmt"]
+[ext_resource type="Script" path="res://src/CounterDay.cs" id="3_2fvn5"]
+[ext_resource type="Script" path="res://src/HealthScale.cs" id="4_v8ru6"]
+
+[node name="UI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HungerScale" type="ProgressBar" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -230.0
+offset_top = 30.0
+offset_right = 231.0
+offset_bottom = 57.0
+grow_horizontal = 2
+show_percentage = false
+script = ExtResource("1_5hgbw")
+
+[node name="TimeOfDay" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_right = 20.0
+offset_bottom = 23.0
+grow_horizontal = 2
+text = "DAY
+"
+horizontal_alignment = 1
+script = ExtResource("2_arhmt")
+
+[node name="CounterDay" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_top = 32.0
+offset_right = 20.0
+offset_bottom = 55.0
+grow_horizontal = 2
+text = "1"
+horizontal_alignment = 1
+script = ExtResource("3_2fvn5")
+
+[node name="HealthScale" type="Label" parent="."]
+layout_mode = 1
+offset_left = 18.0
+offset_top = 13.0
+offset_right = 76.0
+offset_bottom = 36.0
+text = "HP: 100"
+script = ExtResource("4_v8ru6")

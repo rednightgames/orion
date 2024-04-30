@@ -5,8 +5,8 @@
 [ext_resource type="PackedScene" uid="uid://ey7rl5klok2w" path="res://scenes/Tree.tscn" id="2_h0k0k"]
 [ext_resource type="PackedScene" uid="uid://dppscjxu2y6vx" path="res://scenes/Pause.tscn" id="3_tsrnd"]
 [ext_resource type="PackedScene" uid="uid://bl87xmfiecoj8" path="res://scenes/day_night_cycle.tscn" id="4_ub5dq"]
-[ext_resource type="Script" path="res://src/UI.cs" id="6_2ss28"]
 [ext_resource type="PackedScene" uid="uid://b7iupg4owehov" path="res://scenes/Entity.tscn" id="7_fxps0"]
+[ext_resource type="PackedScene" uid="uid://o8vtl482qra0" path="res://scenes/UI.tscn" id="7_x4nik"]
 
 [sub_resource type="Environment" id="Environment_vv2o1"]
 background_mode = 1
@@ -61,28 +61,10 @@ environment = SubResource("Environment_vv2o1")
 camera_attributes = SubResource("CameraAttributesPractical_gmb4t")
 
 [node name="Entity" parent="." instance=ExtResource("7_fxps0")]
-_hungryChange = 1.0
+hungryValueMax = 10.0
+hungryValue = 10.0
 
-[node name="UI" type="Control" parent="."]
-layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-script = ExtResource("6_2ss28")
-
-[node name="HungerScale" type="ProgressBar" parent="UI"]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = -0.025
-anchor_top = -0.15
-anchor_right = 0.975
-anchor_bottom = -0.15
-offset_left = 342.0
-offset_top = 19.0
-offset_right = 803.0
-offset_bottom = 46.0
-grow_horizontal = 2
-show_percentage = false
+[node name="UI" parent="." instance=ExtResource("7_x4nik")]
 
 [connection signal="timeout" from="LevelTimer" to="DayNightCycle" method="_on_level_timer_timeout"]
 [connection signal="timeout" from="LevelTimer" to="Entity" method="EntityHungryTimer"]
