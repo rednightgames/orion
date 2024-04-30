@@ -54,7 +54,8 @@ autostart = true
 
 [node name="DayNightCycle" parent="." instance=ExtResource("4_ub5dq")]
 durationday = 10
-durationevening = 5
+durationevening = 0
+durationnight = 0
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_vv2o1")

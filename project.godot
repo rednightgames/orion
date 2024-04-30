@@ -18,10 +18,19 @@ config/icon="res://icon.svg"
 [autoload]
 
 GameManager="*res://src/GameManager.cs"
+AssetManager="*res://src/AssetManager.cs"
 
 [dotnet]
 
 project/assembly_name="orion"
+
+[file_customization]
+
+folder_colors={
+"res://assets/": "orange",
+"res://scenes/": "green",
+"res://src/": "pink"
+}
 
 [input]
 
