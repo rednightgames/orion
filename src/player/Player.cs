@@ -25,6 +25,7 @@ public partial class Player : CharacterBody3D
     public override void _Ready()
     {
         _inventory = new Inventory(this);
+        _navigation = GetNode<NavigationAgent3D>("Navigation");
         _anim = GetNode<AnimationTree>("AnimationTree");
         _stateMachine = (AnimationNodeStateMachinePlayback)_anim.Get("parameters/playback");
         _playerCamera = GetNode<PlayerCamera>("PlayerCamera");

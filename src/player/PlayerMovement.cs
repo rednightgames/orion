@@ -47,6 +47,28 @@ public partial class Player : CharacterBody3D
             _inventory.SetActiveSlot(1);
             RotateCamera(CameraRotationAngle);
         }
+
+        if (Input.IsActionJustPressed("ui_accept") && _targetItem != null)
+        {
+            GD.Print("ui_accept");
+            _navigation.TargetPosition = _targetItem.GlobalTransform.Origin;
+            _isMovingToItem = true;
+        }
+
+        if (_isMovingToItem)
+        {
+            var nextPathPosition = _navigation.GetNextPathPosition();
+            var newVelocity = GlobalPosition.DirectionTo(nextPathPosition) * speed * (float)delta;
+
+            _navigation.SetVelocityForced(newVelocity);
+
+            MoveAndSlide();
+        }
+    }
+
+    private void _on_velocity_computed(Vector3 safe_velocity, double delta)
+    {
+        GlobalPosition = GlobalPosition.MoveToward(GlobalPosition + safe_velocity, (float)delta);
     }
 
     private void RotateCamera(float angle)

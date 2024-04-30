@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://dlyudgaufrbhx"]
 
-[ext_resource type="Script" path="res://src/PlayerCamera.cs" id="1_6p6gx"]
+[ext_resource type="Script" path="res://src/player/PlayerCamera.cs" id="1_6p6gx"]
 
 [node name="PlayerCamera" type="Camera3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.697234, 0.460233)
