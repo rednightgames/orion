@@ -1,0 +1,175 @@
+[gd_scene load_steps=18 format=3 uid="uid://c8jusxs3i88bx"]
+
+[ext_resource type="Texture2D" uid="uid://bm18ev5reamat" path="res://assets/objects/plants.png" id="1_imvyh"]
+[ext_resource type="Script" path="res://src/Wheat.cs" id="1_v2mkp"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_57r13"]
+size = Vector3(0.1, 0.1, 0.1)
+
+[sub_resource type="Animation" id="Animation_ctw26"]
+resource_name = "stage_1"
+length = 0.4
+loop_mode = 1
+tracks/0/type = "position_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite3D")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array()
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite3D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+
+[sub_resource type="Animation" id="Animation_q31uf"]
+resource_name = "stage_2"
+length = 0.4
+loop_mode = 1
+tracks/0/type = "position_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite3D")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array()
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite3D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [2]
+}
+
+[sub_resource type="Animation" id="Animation_a03cj"]
+resource_name = "stage_3"
+length = 0.4
+loop_mode = 1
+tracks/0/type = "position_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite3D")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array()
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite3D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [3]
+}
+
+[sub_resource type="Animation" id="Animation_4addd"]
+resource_name = "stage_4"
+length = 0.4
+loop_mode = 1
+tracks/0/type = "position_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite3D")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array()
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite3D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [4]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_54tqw"]
+_data = {
+"stage_1": SubResource("Animation_ctw26"),
+"stage_2": SubResource("Animation_q31uf"),
+"stage_3": SubResource("Animation_a03cj"),
+"stage_4": SubResource("Animation_4addd")
+}
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_36suy"]
+animation = &"stage_1"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_g67lx"]
+animation = &"stage_2"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_2n4om"]
+animation = &"stage_3"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_r5r7j"]
+animation = &"stage_4"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_mef5i"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ov07p"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_kgopm"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_sv2up"]
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_2o1d4"]
+states/Start/position = Vector2(162, 108)
+states/stage_1/node = SubResource("AnimationNodeAnimation_36suy")
+states/stage_1/position = Vector2(357, 76)
+states/stage_2/node = SubResource("AnimationNodeAnimation_g67lx")
+states/stage_2/position = Vector2(507, 71)
+states/stage_3/node = SubResource("AnimationNodeAnimation_2n4om")
+states/stage_3/position = Vector2(650, 60)
+states/stage_4/node = SubResource("AnimationNodeAnimation_r5r7j")
+states/stage_4/position = Vector2(795, 86)
+transitions = ["stage_1", "stage_2", SubResource("AnimationNodeStateMachineTransition_mef5i"), "Start", "stage_1", SubResource("AnimationNodeStateMachineTransition_ov07p"), "stage_2", "stage_3", SubResource("AnimationNodeStateMachineTransition_kgopm"), "stage_3", "stage_4", SubResource("AnimationNodeStateMachineTransition_sv2up")]
+
+[node name="Wheat" type="StaticBody3D"]
+script = ExtResource("1_v2mkp")
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+centered = false
+offset = Vector2(-8, 0)
+billboard = 1
+shaded = true
+texture_filter = 0
+texture = ExtResource("1_imvyh")
+hframes = 6
+vframes = 2
+frame = 1
+region_rect = Rect2(17, 7, 13, 8)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_57r13")
+disabled = true
+
+[node name="AnimationWheat" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_54tqw")
+}
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_54tqw")
+}
+tree_root = SubResource("AnimationNodeStateMachine_2o1d4")
+anim_player = NodePath("../AnimationWheat")

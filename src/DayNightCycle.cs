@@ -14,7 +14,7 @@ public partial class DayNightCycle : Node3D
         durationevening = 20,
         durationnight = 10;
     private TimeState state;
-    private int leveltime;
+    public int leveltime;
     private int cycletimer;
     private int durationcycle;
     public int countday = 1;

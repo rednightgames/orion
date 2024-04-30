@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://ykpdkwi1bhfp"]
+[gd_scene load_steps=11 format=3 uid="uid://ykpdkwi1bhfp"]
 
 [ext_resource type="Script" path="res://src/Main.cs" id="1_kc2wc"]
 [ext_resource type="MeshLibrary" uid="uid://brcedkokqnmt4" path="res://mesh1.tres" id="2_c6ntw"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://bl87xmfiecoj8" path="res://scenes/day_night_cycle.tscn" id="4_ub5dq"]
 [ext_resource type="PackedScene" uid="uid://b7iupg4owehov" path="res://scenes/Entity.tscn" id="7_fxps0"]
 [ext_resource type="PackedScene" uid="uid://o8vtl482qra0" path="res://scenes/UI.tscn" id="7_x4nik"]
+[ext_resource type="PackedScene" uid="uid://c8jusxs3i88bx" path="res://scenes/Wheat.tscn" id="8_5ywat"]
 
 [sub_resource type="Environment" id="Environment_vv2o1"]
 background_mode = 1
@@ -65,6 +66,9 @@ hungryValueMax = 10.0
 hungryValue = 10.0
 
 [node name="UI" parent="." instance=ExtResource("7_x4nik")]
+
+[node name="Wheat" parent="." instance=ExtResource("8_5ywat")]
+transform = Transform3D(4.6158, 0, 0, 0, 3.93125, 0, 0, 0, 0.463109, 0.98351, -0.00758314, -0.000707313)
 
 [connection signal="timeout" from="LevelTimer" to="DayNightCycle" method="_on_level_timer_timeout"]
 [connection signal="timeout" from="LevelTimer" to="Entity" method="EntityHungryTimer"]
