@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-public partial class PathManager
+public class PathManager
 {
     private static Dictionary<string, string> _pathMappings = new Dictionary<string, string>()
     {
