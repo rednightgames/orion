@@ -15,7 +15,7 @@ monitoring = false
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.102393, 0)
 shape = SubResource("SphereShape3D_lyv66")
 
-[node name="Sprite3D" type="Sprite3D" parent="." groups=["item"]]
+[node name="Sprite" type="Sprite3D" parent="." groups=["item"]]
 transform = Transform3D(1.19565, 0, 0, 0, 1.19566, 0, 0, 0, 1.19566, 0, 0.1, 0)
 centered = false
 offset = Vector2(-8, -8)

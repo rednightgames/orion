@@ -11,8 +11,6 @@ public class TextureResource : BasicResource
         {
             if (_texturePath == null)
             {
-                GD.Print("value                          ", value);
-                GD.Print("PathManager.ResolvePath(value) ", PathManager.ResolvePath(value));
                 _texturePath = PathManager.ResolvePath(value);
             }
         }
