@@ -36,8 +36,6 @@ public partial class AssetManager : Node
         _cache.Remove(id);
         loadableObject.Resource = ResourceLoader.Load<Texture2D>(loadableObject.Texture);
         _loadedCache.Add(id, loadableObject);
-        GD.Print("loadableObject.Texture  ", loadableObject.Texture);
-        GD.Print("loadableObject.Resource ", loadableObject.Resource);
         return loadableObject;
     }
 

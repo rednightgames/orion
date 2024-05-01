@@ -20,7 +20,6 @@ public class TextureResource : BasicResource
         get => _texture;
         set
         {
-            GD.Print("aaa", _texturePath);
             if (_texture == null)
             {
                 _texture = value;

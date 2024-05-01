@@ -10,7 +10,6 @@ public partial class Item : InventoryItem
     public override void _Ready()
     {
         _sprite = GetNode<Sprite3D>("Sprite");
-        GD.Print("_Ready._sprite ", _sprite);
         OnInitialized();
     }
 
