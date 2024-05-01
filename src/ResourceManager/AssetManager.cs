@@ -1,27 +1,28 @@
+namespace ResourceManager;
+
 using System;
 using System.Collections.Generic;
 using System.IO;
 using Godot;
 using Newtonsoft.Json;
-using ResourceManager;
 
-public partial class AssetManager : Node
+public static class AssetManager
 {
-    private Dictionary<string, string> _directoryTypeMap = new Dictionary<string, string>
+    private static Dictionary<string, string> _directoryTypeMap = new Dictionary<string, string>
     {
         { "res://data/items/", nameof(ItemData) }
     };
-    private Dictionary<string, Func<string, object>> _dataHandlers = new Dictionary<
+    private static Dictionary<string, Func<string, object>> _dataHandlers = new Dictionary<
         string,
         Func<string, object>
     >()
     {
         { nameof(ItemData), (jsonString) => JsonConvert.DeserializeObject<ItemData>(jsonString) }
     };
-    private Dictionary<string, object> _cache = new Dictionary<string, object>() { };
-    private Dictionary<string, object> _loadedCache = new Dictionary<string, object>() { };
+    private static Dictionary<string, object> _cache = new Dictionary<string, object>() { };
+    private static Dictionary<string, object> _loadedCache = new Dictionary<string, object>() { };
 
-    public override void _Ready()
+    static AssetManager()
     {
         foreach (var entry in _directoryTypeMap)
         {
@@ -29,7 +30,7 @@ public partial class AssetManager : Node
         }
     }
 
-    public T Load<T>(string id)
+    public static T Load<T>(string id)
         where T : TextureResource
     {
         T loadableObject = (T)_cache[id];
@@ -39,7 +40,7 @@ public partial class AssetManager : Node
         return loadableObject;
     }
 
-    private void ListDirectoriesAndFiles(string directoryPath, string dataType)
+    private static void ListDirectoriesAndFiles(string directoryPath, string dataType)
     {
         var dir = DirAccess.Open(directoryPath);
         if (dir != null)
@@ -61,7 +62,7 @@ public partial class AssetManager : Node
         }
     }
 
-    private void LoadAndProcessJson(string filePath, string dataType)
+    private static void LoadAndProcessJson(string filePath, string dataType)
     {
         try
         {

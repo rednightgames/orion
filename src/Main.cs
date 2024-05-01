@@ -5,11 +5,9 @@ public partial class Main : Node3D
     [Export]
     public Vector3 SpawnPosition = new Vector3(0, 0, 0);
     public Vector3 SpawnItemPosition = new Vector3(1, 0, 1);
-    AssetManager ResourceManager;
 
     public override void _Ready()
     {
-        ResourceManager = GetNode<AssetManager>("/root/AssetManager");
         Create_player();
         Spawn_Items();
     }
@@ -26,7 +24,7 @@ public partial class Main : Node3D
 
     public void Spawn_Items()
     {
-        ItemData data = ResourceManager.Load<ItemData>("egg");
+        ItemData data = ResourceManager.AssetManager.Load<ItemData>("grass");
         Item item = GD.Load<PackedScene>("res://scenes/Item.tscn").Instantiate<Item>();
         item.Initialized += () =>
         {

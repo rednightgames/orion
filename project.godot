@@ -18,7 +18,6 @@ config/icon="res://icon.svg"
 [autoload]
 
 GameManager="*res://src/GameManager.cs"
-AssetManager="*res://src/AssetManager.cs"
 
 [dotnet]
 
