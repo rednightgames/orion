@@ -1,16 +1,18 @@
+namespace ResourceManager;
+
 using System.Collections.Generic;
 
 public class PathManager
 {
-    private static Dictionary<string, string> _pathMappings = new Dictionary<string, string>()
+    private static Dictionary<string, string> _texturePathsMappings = new Dictionary<string, string>()
     {
         { "characters://", "res://assets/characters/" },
         { "items://", "res://assets/items/" }
     };
 
-    public static string ResolvePath(string path)
+    public static string ResolveTexturePath(string path)
     {
-        foreach (var mapping in _pathMappings)
+        foreach (var mapping in _texturePathsMappings)
         {
             if (path.StartsWith(mapping.Key))
             {

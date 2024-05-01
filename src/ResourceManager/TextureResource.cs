@@ -11,7 +11,7 @@ public class TextureResource : BasicResource
         {
             if (_texturePath == null)
             {
-                _texturePath = PathManager.ResolvePath(value);
+                _texturePath = PathManager.ResolveTexturePath(value);
             }
         }
     }
