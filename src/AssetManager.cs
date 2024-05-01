@@ -2,6 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using Godot;
+using Newtonsoft.Json;
+using ResourceManager;
 
 public partial class AssetManager : Node
 {
@@ -9,11 +11,15 @@ public partial class AssetManager : Node
     {
         { "res://data/items/", nameof(ItemData) }
     };
-
-    //private Dictionary<string, Func<Dictionary<object, object>, object>> _dataHandlers = new Dictionary<string, Func<Dictionary<object, object>, object>>()
-    //{
-    //    { nameof(ItemData), (jsonData) => new ItemData(jsonData) }
-    //};
+    private Dictionary<string, Func<string, object>> _dataHandlers = new Dictionary<
+        string,
+        Func<string, object>
+    >()
+    {
+        { nameof(ItemData), (jsonString) => JsonConvert.DeserializeObject<ItemData>(jsonString) }
+    };
+    private Dictionary<string, object> _cache = new Dictionary<string, object>() { };
+    private Dictionary<string, object> _loadedCache = new Dictionary<string, object>() { };
 
     public override void _Ready()
     {
@@ -21,6 +27,18 @@ public partial class AssetManager : Node
         {
             ListDirectoriesAndFiles(entry.Key, entry.Value);
         }
+    }
+
+    public T Load<T>(string id)
+        where T : TextureResource
+    {
+        T loadableObject = (T)_cache[id];
+        _cache.Remove(id);
+        loadableObject.Resource = ResourceLoader.Load<Texture2D>(loadableObject.Texture);
+        _loadedCache.Add(id, loadableObject);
+        GD.Print("loadableObject.Texture  ", loadableObject.Texture);
+        GD.Print("loadableObject.Resource ", loadableObject.Resource);
+        return loadableObject;
     }
 
     private void ListDirectoriesAndFiles(string directoryPath, string dataType)
@@ -51,23 +69,18 @@ public partial class AssetManager : Node
         {
             GD.Print("Loading ", filePath);
 
-            Godot.Collections.Dictionary jsonData = ResourceLoader
-                .Load<Json>(filePath)
-                .Data.As<Godot.Collections.Dictionary>();
+            string jsonString = Godot.FileAccess.GetFileAsString(filePath);
 
-            if (_directoryTypeMap.ContainsValue(dataType))
+            if (_dataHandlers.ContainsKey(dataType))
             {
-                if (dataType == nameof(ItemData))
-                {
-                    GD.Print(new ItemData(jsonData).Texture);
-                }
+                object info = _dataHandlers[dataType].Invoke(jsonString);
+
+                _cache.Add((info as BasicResource).Id, info);
             }
             else
             {
                 GD.Print("Unknown data type");
             }
-
-            GD.Print(jsonData);
         }
         catch (Exception e)
         {

@@ -2,27 +2,26 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bpxlsvqn7wkvv"
-path.s3tc="res://.godot/imported/grass_item.png-eecff4b1d5d462cd3ff3cb21d5c5dba5.s3tc.ctex"
+uid="uid://dr5qivinu7koe"
+path="res://.godot/imported/milk.png-578427907e2435aaa747a112d1d500d0.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/items/grass_item.png"
-dest_files=["res://.godot/imported/grass_item.png-eecff4b1d5d462cd3ff3cb21d5c5dba5.s3tc.ctex"]
+source_file="res://assets/items/milk.png"
+dest_files=["res://.godot/imported/milk.png-578427907e2435aaa747a112d1d500d0.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=0
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1
 compress/normal_map=0
 compress/channel_pack=0
-mipmaps/generate=true
+mipmaps/generate=false
 mipmaps/limit=-1
 roughness/mode=0
 roughness/src_normal=""
@@ -32,4 +31,4 @@ process/normal_map_invert_y=false
 process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
-detect_3d/compress_to=0
+detect_3d/compress_to=1

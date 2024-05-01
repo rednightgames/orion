@@ -1,5 +1,6 @@
 {
+    "id": "grass",
     "name": "grass",
     "description": "",
-    "texture": ""
+    "texture": "items://grass.png"
 }

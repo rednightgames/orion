@@ -60,7 +60,6 @@ public abstract partial class InventoryItem : Node3D
 {
     public new string Name;
     public string Description;
-    public string Texture;
 
     public virtual void ApplyEffect(Player player) { }
 }
