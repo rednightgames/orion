@@ -21,6 +21,8 @@ public partial class Item : InventoryItem
     protected void PostInit()
     {
         TextureResource data = AssetManager.Load<TextureResource>(Id);
+        Name = data.Name;
+        Description = data.Description;
         _sprite.Texture = data.Resource;
     }
 }
