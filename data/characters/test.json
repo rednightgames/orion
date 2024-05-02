@@ -1,0 +1,7 @@
+{
+    "name": "test_player",
+    "texture": "",
+    "properties": {
+        "speed": 160
+    }
+}

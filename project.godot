@@ -23,6 +23,16 @@ GameManager="*res://src/GameManager.cs"
 
 project/assembly_name="orion"
 
+[file_customization]
+
+folder_colors={
+"res://addons/": "red",
+"res://assets/": "orange",
+"res://data/": "teal",
+"res://scenes/": "green",
+"res://src/": "pink"
+}
+
 [input]
 
 Escape={

@@ -1,6 +1,6 @@
-[gd_scene load_steps=28 format=3 uid="uid://b4g33iclle08j"]
+[gd_scene load_steps=29 format=3 uid="uid://b4g33iclle08j"]
 
-[ext_resource type="Script" path="res://src/Player.cs" id="1_0bnqe"]
+[ext_resource type="Script" path="res://src/Player/Player.cs" id="1_lwgnm"]
 [ext_resource type="Texture2D" uid="uid://d0mdrkmvoqq6s" path="res://assets/characters/character_spritesheet.png" id="1_r1x58"]
 [ext_resource type="PackedScene" uid="uid://dlyudgaufrbhx" path="res://scenes/PlayerCamera.tscn" id="3_bj5bj"]
 
@@ -222,9 +222,11 @@ states/walk/node = SubResource("AnimationNodeBlendSpace2D_qgp20")
 states/walk/position = Vector2(581, 118)
 transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_gl7vm"), "walk", "idle", SubResource("AnimationNodeStateMachineTransition_ptrop"), "idle", "walk", SubResource("AnimationNodeStateMachineTransition_jh7bu")]
 
+[sub_resource type="SphereShape3D" id="SphereShape3D_0eol2"]
+
 [node name="Player" type="CharacterBody3D"]
 transform = Transform3D(2.50708, 0, 0, 0, 2.50708, 0, 0, 0, 2.50708, 0, 0, 0)
-script = ExtResource("1_0bnqe")
+script = ExtResource("1_lwgnm")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.143488, 0)
@@ -250,9 +252,6 @@ libraries = {
 }
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_7g4xc")
-}
 tree_root = SubResource("AnimationNodeStateMachine_rjiui")
 anim_player = NodePath("../AnimationPlayer")
 parameters/idle/blend_position = Vector2(-0.9984, -0.0158731)
@@ -264,3 +263,13 @@ size = 2.0
 
 [node name="Navigation" type="NavigationAgent3D" parent="."]
 avoidance_enabled = true
+radius = 0.01
+
+[node name="Area" type="Area3D" parent="."]
+monitorable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area"]
+shape = SubResource("SphereShape3D_0eol2")
+
+[connection signal="area_entered" from="Area" to="." method="OnItemAreaEntered"]
+[connection signal="area_exited" from="Area" to="." method="OnItemAreaExited"]
