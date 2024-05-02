@@ -7,12 +7,6 @@ public partial class Player : CharacterBody3D
 
     public override void _PhysicsProcess(double delta)
     {
-        foreach (var item in _inventory._items)
-        {
-            if (item != null)
-            GD.Print(item.Description);
-        }
-
         Vector3 inputDirection = new Vector3(
             Input.GetActionStrength("move_right") - Input.GetActionStrength("move_left"),
             0,

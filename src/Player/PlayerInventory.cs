@@ -6,7 +6,7 @@ public partial class Inventory : Node
 
     private int activeSlotIndex = 0;
 
-    public InventoryItem[] _items = new InventoryItem[InventorySize];
+    private InventoryItem[] _items = new InventoryItem[InventorySize];
     private Player _player;
 
     public Inventory(Node parent)
