@@ -79,9 +79,14 @@ public partial class Player : CharacterBody3D
                 < MinimalItemCollectDistance
             )
             {
-                _inventory.AddItem(_targetItem.GetParent<InventoryItem>());
-                _targetItem.GetParent().QueueFree();
-                _targetItem = _area.GetOverlappingAreas().Last();
+                _inventory.AddItem(
+                    _targetItem.GetParent<InventoryItem>(),
+                    () =>
+                    {
+                        _targetItem.GetParent().QueueFree();
+                        _targetItem = _area.GetOverlappingAreas().Last();
+                    }
+                );
                 _isMovingToItem = false;
                 return;
             }
