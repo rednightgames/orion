@@ -1,22 +1,22 @@
 [gd_scene load_steps=3 format=3 uid="uid://dqp6s08ipcq5c"]
 
-[ext_resource type="Script" path="res://src/Item.cs" id="1_2jb1y"]
+[ext_resource type="Script" path="res://src/Item.cs" id="1_g735d"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_lyv66"]
 radius = 0.185497
 
 [node name="Item" type="Node3D" groups=["item"]]
-script = ExtResource("1_2jb1y")
+script = ExtResource("1_g735d")
 
 [node name="Area3D" type="Area3D" parent="." groups=["item"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.125, 0)
 monitoring = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" groups=["item"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.102393, 0)
 shape = SubResource("SphereShape3D_lyv66")
 
 [node name="Sprite" type="Sprite3D" parent="." groups=["item"]]
-transform = Transform3D(1.19565, 0, 0, 0, 1.19566, 0, 0, 0, 1.19566, 0, 0.1, 0)
+transform = Transform3D(1.19565, 0, 0, 0, 1.19566, 0, 0, 0, 1.19566, 0, 0.125, 0)
 centered = false
 offset = Vector2(-8, -8)
 pixel_size = 0.02

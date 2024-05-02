@@ -8,19 +8,25 @@ using Newtonsoft.Json;
 
 public static class AssetManager
 {
-    private static Dictionary<string, string> _directoryTypeMap = new Dictionary<string, string>
+    private static readonly Dictionary<string, string> _directoryTypeMap = new Dictionary<
+        string,
+        string
+    >
     {
         { "res://data/items/", nameof(ItemData) }
     };
-    private static Dictionary<string, Func<string, object>> _dataHandlers = new Dictionary<
+
+    private static readonly Dictionary<string, Func<string, object>> _dataHandlers = new Dictionary<
         string,
         Func<string, object>
-    >()
+    >
     {
-        { nameof(ItemData), (jsonString) => JsonConvert.DeserializeObject<ItemData>(jsonString) }
+        { nameof(ItemData), JsonConvert.DeserializeObject<ItemData> }
     };
-    private static Dictionary<string, object> _cache = new Dictionary<string, object>() { };
-    private static Dictionary<string, object> _loadedCache = new Dictionary<string, object>() { };
+
+    private static readonly Dictionary<string, object> _cache = new Dictionary<string, object>();
+    private static readonly Dictionary<string, object> _loadedCache =
+        new Dictionary<string, object>();
 
     static AssetManager()
     {
@@ -33,11 +39,30 @@ public static class AssetManager
     public static T Load<T>(string id)
         where T : TextureResource
     {
-        T loadableObject = (T)_cache[id];
-        _cache.Remove(id);
-        loadableObject.Resource = ResourceLoader.Load<Texture2D>(loadableObject.Texture);
-        _loadedCache.Add(id, loadableObject);
-        return loadableObject;
+        if (_loadedCache.TryGetValue(id, out var loadedObject))
+        {
+            return (T)loadedObject;
+        }
+        else if (_cache.TryGetValue(id, out var loadableObject))
+        {
+            if (loadableObject is T textureObject)
+            {
+                textureObject.Resource = ResourceLoader.Load<Texture2D>(textureObject.Texture);
+                _loadedCache.Add(id, textureObject);
+                _cache.Remove(id);
+                return textureObject;
+            }
+            else
+            {
+                GD.Print("Cached object is not of type T");
+                return null;
+            }
+        }
+        else
+        {
+            GD.Print("Object with id not found in cache");
+            return null;
+        }
     }
 
     private static void ListDirectoriesAndFiles(string directoryPath, string dataType)
@@ -70,11 +95,18 @@ public static class AssetManager
 
             string jsonString = Godot.FileAccess.GetFileAsString(filePath);
 
-            if (_dataHandlers.ContainsKey(dataType))
+            if (_dataHandlers.TryGetValue(dataType, out var handler))
             {
-                object info = _dataHandlers[dataType].Invoke(jsonString);
+                object info = handler(jsonString);
 
-                _cache.Add((info as BasicResource).Id, info);
+                if (info is BasicResource basicResource)
+                {
+                    _cache.Add(basicResource.Id, info);
+                }
+                else
+                {
+                    GD.Print("Loaded object is not a BasicResource");
+                }
             }
             else
             {

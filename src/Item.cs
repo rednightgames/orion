@@ -1,33 +1,26 @@
 using System;
 using Godot;
+using ResourceManager;
 
 public partial class Item : InventoryItem
 {
-    public event Action Initialized;
+    [Export]
+    public string Id;
+    public event Action OnInit;
     private Sprite3D _sprite;
-    private float _speedBoost;
+
+    public Item() { }
 
     public override void _Ready()
     {
         _sprite = GetNode<Sprite3D>("Sprite");
-        OnInitialized();
+        OnInit?.Invoke();
+        PostInit();
     }
 
-    protected virtual void OnInitialized()
+    protected void PostInit()
     {
-        Initialized?.Invoke();
-    }
-
-    public void Init(string name, string description, Texture2D texture, float speedBoost)
-    {
-        Name = name;
-        Description = description;
-        _speedBoost = speedBoost;
-        _sprite.Texture = texture;
-    }
-
-    public override void ApplyEffect(Player player)
-    {
-        player.speed += _speedBoost;
+        ItemData data = AssetManager.Load<ItemData>(Id);
+        _sprite.Texture = data.Resource;
     }
 }

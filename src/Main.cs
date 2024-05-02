@@ -24,13 +24,11 @@ public partial class Main : Node3D
 
     public void Spawn_Items()
     {
-        ItemData data = ResourceManager.AssetManager.Load<ItemData>("grass");
-        Item item = GD.Load<PackedScene>("res://scenes/Item.tscn").Instantiate<Item>();
-        item.Initialized += () =>
-        {
-            item.Init(data.Name, data.Name, data.Resource, 160);
-        };
+        Item item = ResourceManager.ResourceManager.LoadItem<Item>("grass");
+        Item item2 = ResourceManager.ResourceManager.LoadItem<Item>("egg");
         item.Position = SpawnItemPosition;
+        item2.Position = new Vector3(1, 0, -1);
         AddChild(item);
+        AddChild(item2);
     }
 }

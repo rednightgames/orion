@@ -4,7 +4,10 @@ using System.Collections.Generic;
 
 public class PathManager
 {
-    private static Dictionary<string, string> _texturePathsMappings = new Dictionary<string, string>()
+    private static Dictionary<string, string> _texturePathsMappings = new Dictionary<
+        string,
+        string
+    >()
     {
         { "characters://", "res://assets/characters/" },
         { "items://", "res://assets/items/" }
