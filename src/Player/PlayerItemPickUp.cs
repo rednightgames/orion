@@ -3,7 +3,6 @@ using Godot;
 public partial class Player : CharacterBody3D
 {
     private Node3D _targetItem;
-    private Vector3 _targetPosition;
     private bool _isMovingToItem = false;
     private NavigationAgent3D _navigation;
 

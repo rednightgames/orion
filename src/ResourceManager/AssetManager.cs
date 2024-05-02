@@ -13,7 +13,7 @@ public static class AssetManager
         string
     >
     {
-        { "res://data/items/", nameof(ItemData) }
+        { "res://data/items/", "item" }
     };
 
     private static readonly Dictionary<string, Func<string, object>> _dataHandlers = new Dictionary<
@@ -21,7 +21,7 @@ public static class AssetManager
         Func<string, object>
     >
     {
-        { nameof(ItemData), JsonConvert.DeserializeObject<ItemData> }
+        { "item", JsonConvert.DeserializeObject<TextureResource> }
     };
 
     private static readonly Dictionary<string, object> _cache = new Dictionary<string, object>();

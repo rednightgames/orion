@@ -20,7 +20,7 @@ public partial class Item : InventoryItem
 
     protected void PostInit()
     {
-        ItemData data = AssetManager.Load<ItemData>(Id);
+        TextureResource data = AssetManager.Load<TextureResource>(Id);
         _sprite.Texture = data.Resource;
     }
 }

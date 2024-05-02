@@ -1,9 +1,18 @@
+using System.Linq;
 using Godot;
 
 public partial class Player : CharacterBody3D
 {
+    private const float MinimalItemCollectDistance = 0.1f;
+
     public override void _PhysicsProcess(double delta)
     {
+        foreach (var item in _inventory._items)
+        {
+            if (item != null)
+            GD.Print(item.Description);
+        }
+
         Vector3 inputDirection = new Vector3(
             Input.GetActionStrength("move_right") - Input.GetActionStrength("move_left"),
             0,
@@ -13,7 +22,10 @@ public partial class Player : CharacterBody3D
         if (inputDirection != Vector3.Zero)
         {
             _isMovingToItem = false;
+        }
 
+        if (inputDirection != Vector3.Zero && !_isMovingToItem)
+        {
             Vector3 rotatedInputDirection = inputDirection
                 .Rotated(Vector3.Up, Rotation.Y)
                 .Normalized();
@@ -39,36 +51,59 @@ public partial class Player : CharacterBody3D
 
         if (Input.IsActionPressed("Q") && !_isCameraRotating)
         {
-            _inventory.SetActiveSlot(0);
             RotateCamera(-CameraRotationAngle);
         }
         else if (Input.IsActionPressed("E") && !_isCameraRotating)
         {
-            _inventory.SetActiveSlot(1);
             RotateCamera(CameraRotationAngle);
         }
 
-        if (Input.IsActionJustPressed("ui_accept") && _targetItem != null)
+        if (
+            Input.IsActionPressed("ui_accept")
+            && _targetItem != null
+            && !_isMovingToItem
+            && inputDirection == Vector3.Zero
+        )
         {
-            GD.Print("ui_accept");
-            _navigation.TargetPosition = _targetItem.GlobalTransform.Origin;
+            var map = GetWorld3D().NavigationMap;
+            _navigation.TargetPosition = NavigationServer3D.MapGetClosestPoint(map, _targetItem.GlobalPosition);
             _isMovingToItem = true;
         }
 
         if (_isMovingToItem)
         {
-            var nextPathPosition = _navigation.GetNextPathPosition();
-            var newVelocity = GlobalPosition.DirectionTo(nextPathPosition) * speed * (float)delta;
+            if (_targetItem == null) {
+                _isMovingToItem = false;
+                return;
+            }
+            if (
+                GlobalTransform.Origin.DistanceTo(_targetItem.GlobalTransform.Origin)
+                < MinimalItemCollectDistance
+            )
+            {
+                _inventory.AddItem(_targetItem.GetParent<InventoryItem>());
+                _targetItem.GetParent().QueueFree();
+                _targetItem = _area.GetOverlappingAreas().Last();
+                _isMovingToItem = false;
+                return;
+            }
+            var direction = _navigation.GetNextPathPosition() - GlobalPosition;
+            direction = direction.Normalized();
 
-            _navigation.SetVelocityForced(newVelocity);
+            Velocity = new Vector3(direction.X, 0, direction.Z) * speed * (float)delta;
+
+            _stateMachine.Travel("walk");
+            _anim.Set(
+                "parameters/idle/blend_position",
+                new Vector3(direction.X, direction.Z, direction.Y)
+            );
+            _anim.Set(
+                "parameters/walk/blend_position",
+                new Vector3(direction.X, direction.Z, direction.Y)
+            );
 
             MoveAndSlide();
         }
-    }
-
-    private void _on_velocity_computed(Vector3 safe_velocity, double delta)
-    {
-        GlobalPosition = GlobalPosition.MoveToward(GlobalPosition + safe_velocity, (float)delta);
     }
 
     private void RotateCamera(float angle)

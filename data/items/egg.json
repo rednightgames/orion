@@ -1,6 +1,6 @@
 {
     "id": "egg",
     "name": "Egg",
-    "description": "",
+    "description": "Looks like a normal egg",
     "texture": "items://egg.png"
 }

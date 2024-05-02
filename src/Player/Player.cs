@@ -13,6 +13,7 @@ public partial class Player : CharacterBody3D
     private Tween _cameraTween;
     private bool _isCameraRotating = false;
     private Inventory _inventory;
+    private Area3D _area;
     private Dictionary<string, object> _initialPropertyValues = new Dictionary<string, object> { };
 
     internal void Init(float speed)
@@ -29,6 +30,7 @@ public partial class Player : CharacterBody3D
         _anim = GetNode<AnimationTree>("AnimationTree");
         _stateMachine = (AnimationNodeStateMachinePlayback)_anim.Get("parameters/playback");
         _playerCamera = GetNode<PlayerCamera>("PlayerCamera");
+        _area = GetNode<Area3D>("Area");
     }
 
     public override void _Input(InputEvent @event)
@@ -38,11 +40,9 @@ public partial class Player : CharacterBody3D
             switch (mouseEvent.ButtonIndex)
             {
                 case MouseButton.WheelUp:
-                    _inventory.SetActiveSlot(4);
                     _playerCamera.SetCameraZoom(_playerCamera.Zoom * 1.2f);
                     break;
                 case MouseButton.WheelDown:
-                    _inventory.SetActiveSlot(3);
                     _playerCamera.SetCameraZoom(_playerCamera.Zoom * 0.8f);
                     break;
             }
