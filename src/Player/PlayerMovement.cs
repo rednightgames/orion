@@ -60,13 +60,17 @@ public partial class Player : CharacterBody3D
         )
         {
             var map = GetWorld3D().NavigationMap;
-            _navigation.TargetPosition = NavigationServer3D.MapGetClosestPoint(map, _targetItem.GlobalPosition);
+            _navigation.TargetPosition = NavigationServer3D.MapGetClosestPoint(
+                map,
+                _targetItem.GlobalPosition
+            );
             _isMovingToItem = true;
         }
 
         if (_isMovingToItem)
         {
-            if (_targetItem == null) {
+            if (_targetItem == null)
+            {
                 _isMovingToItem = false;
                 return;
             }
