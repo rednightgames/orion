@@ -7,8 +7,12 @@ public partial class Player : CharacterBody3D
 
     public override void _PhysicsProcess(double delta)
     {
+        if (_area.GetOverlappingAreas().Count > 0 && _targetItem == null)
+        {
+            _targetItem = _area.GetOverlappingAreas().Last();
+        }
         _healthScale.playerHealth = playerHealth;
-        
+
         Vector3 inputDirection = new Vector3(
             Input.GetActionStrength("move_right") - Input.GetActionStrength("move_left"),
             0,

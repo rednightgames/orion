@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://dppscjxu2y6vx" path="res://scenes/Pause.tscn" id="3_tsrnd"]
 [ext_resource type="PackedScene" uid="uid://bl87xmfiecoj8" path="res://scenes/day_night_cycle.tscn" id="4_ub5dq"]
 [ext_resource type="PackedScene" uid="uid://b7iupg4owehov" path="res://scenes/Entity.tscn" id="7_fxps0"]
-[ext_resource type="PackedScene" uid="uid://o8vtl482qra0" path="res://scenes/UI.tscn" id="7_x4nik"]
+[ext_resource type="PackedScene" path="res://scenes/UI.tscn" id="7_x4nik"]
 [ext_resource type="PackedScene" uid="uid://dqp6s08ipcq5c" path="res://scenes/Item.tscn" id="8_o1sou"]
 
 [sub_resource type="Environment" id="Environment_vv2o1"]
@@ -51,17 +51,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.57651, 0, 2.94138)
 autostart = true
 
 [node name="DayNightCycle" parent="." instance=ExtResource("4_ub5dq")]
-durationday = 10
-durationevening = 0
-durationnight = 0
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_vv2o1")
 camera_attributes = SubResource("CameraAttributesPractical_gmb4t")
 
 [node name="Entity" parent="." instance=ExtResource("7_fxps0")]
-hungryValueMax = 10.0
-hungryValue = 10.0
 
 [node name="UI" parent="." instance=ExtResource("7_x4nik")]
 
