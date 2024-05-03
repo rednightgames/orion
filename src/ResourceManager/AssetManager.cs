@@ -13,7 +13,8 @@ public static class AssetManager
         string
     >
     {
-        { "res://data/items/", "item" }
+        { "res://data/items/", "items" },
+        { "res://data/characters/", "characters" }
     };
 
     private static readonly Dictionary<string, Func<string, object>> _dataHandlers = new Dictionary<
@@ -21,7 +22,8 @@ public static class AssetManager
         Func<string, object>
     >
     {
-        { "item", JsonConvert.DeserializeObject<TextureResource> }
+        { "items", JsonConvert.DeserializeObject<TextureResource> },
+        { "characters", JsonConvert.DeserializeObject<Player.PlayerStats> }
     };
 
     private static readonly Dictionary<string, object> _cache = new Dictionary<string, object>();
@@ -37,7 +39,7 @@ public static class AssetManager
     }
 
     public static T Load<T>(string id)
-        where T : TextureResource
+        where T : BasicResource
     {
         if (_loadedCache.TryGetValue(id, out var loadedObject))
         {
@@ -45,16 +47,19 @@ public static class AssetManager
         }
         else if (_cache.TryGetValue(id, out var loadableObject))
         {
-            if (loadableObject is T textureObject)
+            if (
+                loadableObject is TextureResource textureObject
+                && typeof(T) == typeof(TextureResource)
+            )
             {
                 textureObject.Resource = ResourceLoader.Load<Texture2D>(textureObject.Texture);
                 _loadedCache.Add(id, textureObject);
                 _cache.Remove(id);
-                return textureObject;
+                return (T)(object)textureObject;
             }
             else
             {
-                GD.Print("Cached object is not of type T");
+                GD.Print("Cached object is not of type T or not a TextureResource");
                 return null;
             }
         }
@@ -101,7 +106,22 @@ public static class AssetManager
 
                 if (info is BasicResource basicResource)
                 {
-                    _cache.Add(basicResource.Id, info);
+                    if (info is TextureResource textureResource)
+                    {
+                        if (!_loadedCache.ContainsKey(basicResource.Id))
+                        {
+                            _cache.Add(basicResource.Id, info);
+                        }
+                        else
+                        {
+                            GD.Print("Resource with id ", basicResource.Id, " already loaded.");
+                            return;
+                        }
+                    }
+                    else
+                    {
+                        _loadedCache.Add(basicResource.Id, info);
+                    }
                 }
                 else
                 {
