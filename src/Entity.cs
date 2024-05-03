@@ -8,11 +8,11 @@ public partial class Entity : Node3D
         hungryValue = 100,
         hungryBoost = 1,
         hungryChange = 1;
-   
+
     private float _hungryValue
     {
-        get {return hungryValue;}
-        set 
+        get { return hungryValue; }
+        set
         {
             if ((value > hungryValueMin) && (value < hungryValueMax))
             {
@@ -21,13 +21,9 @@ public partial class Entity : Node3D
         }
     }
 
-    public override void _Ready()
-    { 
-    }
+    public override void _Ready() { }
 
-    public override void _Process(double delta) 
-    {
-    }
+    public override void _Process(double delta) { }
 
     public void EntityHungryTimer()
     {

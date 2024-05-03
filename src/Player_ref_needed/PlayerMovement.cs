@@ -1,7 +1,7 @@
 using System.Linq;
 using Godot;
 
-public partial class Player : CharacterBody3D
+public partial class PlayerRef : CharacterBody3D
 {
     private const float MinimalItemCollectDistance = 0.1f;
 
@@ -47,15 +47,6 @@ public partial class Player : CharacterBody3D
         else
         {
             _stateMachine.Travel("idle");
-        }
-
-        if (Input.IsActionPressed("Q") && !_isCameraRotating)
-        {
-            RotateCamera(-CameraRotationAngle);
-        }
-        else if (Input.IsActionPressed("E") && !_isCameraRotating)
-        {
-            RotateCamera(CameraRotationAngle);
         }
 
         if (

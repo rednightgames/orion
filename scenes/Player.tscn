@@ -259,7 +259,7 @@ parameters/walk/blend_position = Vector2(-0.08, 0.978836)
 
 [node name="PlayerCamera" parent="." instance=ExtResource("3_bj5bj")]
 transform = Transform3D(0.39887, 0, 0, 0, 0.136422, 0.374816, 0, -0.374816, 0.136422, 0, 1.50985, 0.750177)
-size = 2.0
+v_offset = 0.25
 
 [node name="Navigation" type="NavigationAgent3D" parent="."]
 avoidance_enabled = true
@@ -270,6 +270,3 @@ monitorable = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area"]
 shape = SubResource("SphereShape3D_0eol2")
-
-[connection signal="area_entered" from="Area" to="." method="OnItemAreaEntered"]
-[connection signal="area_exited" from="Area" to="." method="OnItemAreaExited"]

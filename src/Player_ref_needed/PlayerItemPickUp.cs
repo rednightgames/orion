@@ -1,6 +1,6 @@
 using Godot;
 
-public partial class Player : CharacterBody3D
+public partial class PlayerRef : CharacterBody3D
 {
     private Node3D _targetItem;
     private bool _isMovingToItem = false;

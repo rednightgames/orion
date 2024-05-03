@@ -8,7 +8,7 @@ public partial class Inventory : Node
     private int activeSlotIndex = 0;
 
     public InventoryItem[] _items = new InventoryItem[InventorySize];
-    private Player _player;
+    private PlayerRef _player;
 
     public Inventory(Node parent)
     {
@@ -17,7 +17,7 @@ public partial class Inventory : Node
 
     public override void _Ready()
     {
-        _player = GetParent<Player>();
+        _player = GetParent<PlayerRef>();
     }
 
     public void SetActiveSlot(int index)
@@ -63,5 +63,5 @@ public abstract partial class InventoryItem : Node3D
     public new string Name;
     public string Description;
 
-    public virtual void ApplyEffect(Player player) { }
+    public virtual void ApplyEffect(PlayerRef player) { }
 }

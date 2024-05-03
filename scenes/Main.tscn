@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://dppscjxu2y6vx" path="res://scenes/Pause.tscn" id="3_tsrnd"]
 [ext_resource type="PackedScene" uid="uid://bl87xmfiecoj8" path="res://scenes/day_night_cycle.tscn" id="4_ub5dq"]
 [ext_resource type="PackedScene" uid="uid://b7iupg4owehov" path="res://scenes/Entity.tscn" id="7_fxps0"]
-[ext_resource type="PackedScene" path="res://scenes/UI.tscn" id="7_x4nik"]
+[ext_resource type="PackedScene" uid="uid://o8vtl482qra0" path="res://scenes/UI.tscn" id="7_x4nik"]
 [ext_resource type="PackedScene" uid="uid://dqp6s08ipcq5c" path="res://scenes/Item.tscn" id="8_o1sou"]
 
 [sub_resource type="Environment" id="Environment_vv2o1"]

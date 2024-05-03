@@ -1,4 +1,5 @@
 using Godot;
+using ResourceManager;
 
 public partial class Main : Node3D
 {
@@ -12,13 +13,12 @@ public partial class Main : Node3D
         Spawn_Items();
     }
 
-    public override void _Process(double delta) { }
-
     public void Create_player()
     {
-        Player player = GD.Load<PackedScene>("res://scenes/Player.tscn").Instantiate<Player>();
+        Player.Player player = GD.Load<PackedScene>("res://scenes/Player.tscn")
+            .Instantiate<Player.Player>();
+        player.id = "test_player";
         player.Position = SpawnPosition;
-        player.Init(160.0f);
         AddChild(player);
     }
 

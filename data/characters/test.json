@@ -1,7 +1,6 @@
 {
-    "name": "test_player",
-    "texture": "",
-    "properties": {
-        "speed": 160
-    }
+    "id": "test_player",
+    "name": "Test Player",
+    "hp": 200,
+    "speed": 240
 }
