@@ -3,14 +3,14 @@ using System;
 
 public partial class HealthScale : Label
 {
-	public int playerHealth;
+	private Player _player;
 	public override void _Ready()
 	{
-		
+		_player = GetParent().GetParent().GetParent().GetNode<Player>("Player");
 	}
 
 	public override void _Process(double delta)
 	{
-		Text = "HP: " + playerHealth;
+		Text = "HP: " + _player.playerHealth;
 	}
 }

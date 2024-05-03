@@ -6,7 +6,7 @@ public partial class TimeOfDay : Label
 	
 	public override void _Ready()
 	{
-		_dayNightCycle = GetNode<DayNightCycle>("../../DayNightCycle");
+		_dayNightCycle = GetParent().GetParent().GetParent().GetNode<DayNightCycle>("DayNightCycle");
 	}
 	public override void _Process(double delta)
 	{

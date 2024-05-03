@@ -1,12 +1,13 @@
 using Godot;
 
-public partial class HungerScale : ProgressBar
+public partial class HungerScale : TextureProgressBar
 {
 	private Entity _entity;
 
 	public override void _Ready()
 	{
-		_entity = GetNode<Entity>("../../Entity");
+		//_entity = GetNode<Entity>("/root/Level/Entity");
+		_entity = GetParent().GetParent().GetParent().GetNode<Entity>("Entity");
 		MaxValue = _entity.hungryValueMax;
 		MinValue = _entity.hungryValueMin;
 	}

@@ -6,11 +6,11 @@ public partial class CounterDay : Label
 	
 	public override void _Ready()
 	{
-		_dayNightCycle = GetNode<DayNightCycle>("../../DayNightCycle");
+		_dayNightCycle = GetParent().GetParent().GetParent().GetNode<DayNightCycle>("DayNightCycle");
 	}
 	
 	public override void _Process(double delta)
 	{
-		Text = (_dayNightCycle.countday).ToString();
+		Text = _dayNightCycle.countday.ToString();
 	}
 }
