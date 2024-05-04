@@ -11,19 +11,23 @@ public partial class Camera : Camera3D
     private static int CameraRotationAngle = 45;
     private static float CameraRotationDuration = 0.3f;
     private float _targetZoom = 1.0f;
-    private Sprite3D _player;
-    private Vector3 _rotation;
+    private Player _player;
+    private Sprite3D _playerSprite;
+    private Vector3 _rotation = Vector3.Zero;
     private Tween _cameraTween;
 
     private bool _isCameraRotating = false;
 
     public override void _Ready()
     {
-        _player = GetNode<Sprite3D>("%Sprite3D");
+        _player = GetParent<Player>();
+        _playerSprite = GetNode<Sprite3D>("%Sprite3D");
     }
 
     public override void _PhysicsProcess(double delta)
     {
+        GD.Print("_player.Rotation ", _player.Rotation);
+        GD.Print("_rotation        ", _rotation);
         if (Zoom != _targetZoom)
         {
             float newZoom = Mathf.Lerp(Zoom, _targetZoom, zoomSpeed);
@@ -40,7 +44,7 @@ public partial class Camera : Camera3D
             RotateCamera(CameraRotationAngle);
         }
 
-        LookAt(_player.GlobalTransform.Origin, Vector3.Up);
+        LookAt(_playerSprite.GlobalTransform.Origin, Vector3.Up);
     }
 
     public override void _Input(InputEvent @event)
@@ -69,11 +73,11 @@ public partial class Camera : Camera3D
     {
         _rotation.Y += Mathf.DegToRad(angle);
         DisposeCameraTween();
-        _cameraTween = CreateTween().SetParallel(true);
+        _cameraTween = CreateTween();
         _cameraTween.TweenProperty(
             this,
             "rotation",
-            new Vector3(Rotation.X, _rotation.Y, Rotation.Z),
+            new Vector3(GlobalRotation.X, _rotation.Y, GlobalRotation.Z),
             CameraRotationDuration
         );
         _isCameraRotating = true;
@@ -89,7 +93,7 @@ public partial class Camera : Camera3D
     private void OnCameraRotationCompleted()
     {
         _isCameraRotating = false;
-        _rotation.Y = Mathf.Wrap(Rotation.Y, -Mathf.Pi, Mathf.Pi);
-        Rotation = new Vector3(Rotation.X, _rotation.Y, Rotation.Z);
+        _rotation.Y = Mathf.Wrap(GlobalPosition.Y, -Mathf.Pi, Mathf.Pi);
+        _player.Rotation = new Vector3(GlobalPosition.X, _rotation.Y, GlobalPosition.Z);
     }
 }

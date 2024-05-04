@@ -2,47 +2,44 @@ namespace Player;
 
 using Godot;
 
-public partial class Movement : CharacterBody3D
+public class Movement
 {
-    [Export]
-    public string id;
-    private static float MinimalItemCollectDistance = 0.1f;
+    private Player _player;
+    private Stats _stats;
+    private ItemPickUp _itemPickUp;
     private AnimationTree _anim;
     private AnimationNodeStateMachinePlayback _state;
-    protected Node3D _targetItem;
-    private bool _isMovingToItem = false;
-    private NavigationAgent3D _navigation;
-    private protected Stats _stats;
 
-    public override void _Ready()
+    public Movement(Player player, Stats stats, ItemPickUp itemPickUp, AnimationTree anim)
     {
-        _stats = new(id);
-        _anim = GetNode<AnimationTree>("AnimationTree");
-        _state = (AnimationNodeStateMachinePlayback)_anim.Get("parameters/playback");
-        _navigation = GetNode<NavigationAgent3D>("Navigation");
+        _player = player;
+        _stats = stats;
+        _itemPickUp = itemPickUp;
+        _anim = anim;
+        _state = (AnimationNodeStateMachinePlayback)anim.Get("parameters/playback");
     }
 
-    public override void _PhysicsProcess(double delta)
+    public void Moving(double delta)
     {
         Vector3 inputDirection =
             new(
-                Input.GetActionStrength("move_right") - Input.GetActionStrength("move_left"),
+                Input.GetAxis("move_left", "move_right"),
                 0,
-                Input.GetActionStrength("move_backward") - Input.GetActionStrength("move_forward")
+                Input.GetAxis("move_forward", "move_backward")
             );
 
         if (inputDirection != Vector3.Zero)
         {
-            _isMovingToItem = false;
+            _itemPickUp._isMovingToItem = false;
         }
 
-        if (inputDirection != Vector3.Zero && !_isMovingToItem)
+        if (inputDirection != Vector3.Zero && !_itemPickUp._isMovingToItem)
         {
             Vector3 rotatedInputDirection = inputDirection
-                .Rotated(Vector3.Up, Rotation.Y)
+                .Rotated(Vector3.Up, _player.Rotation.Y)
                 .Normalized();
             inputDirection = inputDirection.Normalized();
-            Velocity = rotatedInputDirection * _stats.speed * (float)delta;
+            _player.Velocity = rotatedInputDirection * _stats.speed * (float)delta;
 
             _state.Travel("walk");
             _anim.Set(
@@ -54,7 +51,7 @@ public partial class Movement : CharacterBody3D
                 new Vector3(inputDirection.X, inputDirection.Z, inputDirection.Y)
             );
 
-            MoveAndSlide();
+            _player.MoveAndSlide();
         }
         else
         {
