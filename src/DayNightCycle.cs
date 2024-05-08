@@ -1,6 +1,6 @@
 using Godot;
 
-public partial class DayNightCycle : Node3D
+public partial class DayNightCycle : Node
 {
     public enum TimeState
     {
@@ -24,6 +24,8 @@ public partial class DayNightCycle : Node3D
     private Tween _worldEnvTween;
     private double _transition = 1;
     public string _timeDay;
+    public Timer timer;
+
 
     public override void _Ready()
     {
@@ -32,6 +34,12 @@ public partial class DayNightCycle : Node3D
         durationcycle = durationday + durationevening + durationnight;
         _dirLight = GetNode<DirectionalLight3D>("../DirectionalLight3D");
         _worldEnv = GetNode<WorldEnvironment>("../WorldEnvironment");
+        timer = new Timer();
+        timer.WaitTime = 1;
+        timer.OneShot = false;
+        timer.Autostart = true;
+        AddChild(timer);
+        timer.Timeout += TimerTimeout;
     }
 
     public override void _Process(double delta)
@@ -66,8 +74,7 @@ public partial class DayNightCycle : Node3D
                 break;
         }
     }
-
-    public void _on_level_timer_timeout()
+    public void TimerTimeout() 
     {
         leveltime++;
         cycletimer++;
@@ -107,4 +114,5 @@ public partial class DayNightCycle : Node3D
             _transition
         );
     }
+    
 }

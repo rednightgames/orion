@@ -43,9 +43,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.49138, 0, 0.910415)
 [node name="Tree3" parent="Objects" instance=ExtResource("2_h0k0k")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.57651, 0, 2.94138)
 
-[node name="LevelTimer" type="Timer" parent="."]
-autostart = true
-
 [node name="DayNightCycle" parent="." instance=ExtResource("4_ub5dq")]
 durationday = 10
 durationevening = 5
@@ -55,6 +52,3 @@ environment = SubResource("Environment_vv2o1")
 camera_attributes = SubResource("CameraAttributesPractical_gmb4t")
 
 [node name="Entity" parent="." instance=ExtResource("7_fxps0")]
-
-[connection signal="timeout" from="LevelTimer" to="DayNightCycle" method="_on_level_timer_timeout"]
-[connection signal="timeout" from="LevelTimer" to="Entity" method="EntityHungryTimer"]

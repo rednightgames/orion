@@ -24,8 +24,11 @@ public partial class Entity : Node3D
             return _hungryValue;
         }
     }
-    public void EntityHungryTimer()
-    {
+    public override void _Ready() {
+        DayNightCycle Cycle = GetParent().GetNode<DayNightCycle>("DayNightCycle");
+        Cycle.timer.Timeout += TimerTimeout;
+    }
+    public void TimerTimeout() {
         HungryValue -= hungryChange * hungryBoost;
     }
 }

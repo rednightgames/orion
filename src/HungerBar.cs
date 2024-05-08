@@ -6,7 +6,6 @@ public partial class HungerBar : TextureProgressBar
 
 	public override void _Ready()
 	{
-		//_entity = GetNode<Entity>("/root/Level/Entity");
 		_entity = GetParent().GetParent().GetParent().GetNode<Entity>("Entity");
 		MaxValue = _entity.hungryValueMax;
 		MinValue = _entity.hungryValueMin;
