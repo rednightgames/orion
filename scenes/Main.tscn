@@ -55,10 +55,6 @@ environment = SubResource("Environment_vv2o1")
 camera_attributes = SubResource("CameraAttributesPractical_gmb4t")
 
 [node name="Entity" parent="." instance=ExtResource("7_fxps0")]
-hungryValueMax = 10.0
-hungryValue = 10.0
-hungryBoost = 7.36
-hungryChange = 0.01
 
 [connection signal="timeout" from="LevelTimer" to="DayNightCycle" method="_on_level_timer_timeout"]
 [connection signal="timeout" from="LevelTimer" to="Entity" method="EntityHungryTimer"]

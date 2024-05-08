@@ -1,7 +1,6 @@
 using Godot;
-using System;
 
-public partial class HealthScale : Label
+public partial class HealthBar : Label
 {
 	private Player _player;
 	public override void _Ready()

@@ -72,7 +72,6 @@ public partial class DayNightCycle : Node3D
         leveltime++;
         cycletimer++;
     }
-
     public void day_state()
     {
         _timeDay = "DAY";

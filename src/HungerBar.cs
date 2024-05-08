@@ -1,6 +1,6 @@
 using Godot;
 
-public partial class HungerScale : TextureProgressBar
+public partial class HungerBar : TextureProgressBar
 {
 	private Entity _entity;
 
@@ -13,6 +13,6 @@ public partial class HungerScale : TextureProgressBar
 	}
 	public override void _Process(double delta)
 	{
-		Value = _entity.hungryValue;
+		Value = _entity.HungryValue;
 	}
 }
