@@ -10,7 +10,9 @@ public partial class Main : Node3D
         Create_player();
     }
 
-    public override void _Process(double delta) { }
+    public override void _Process(double delta) 
+    {
+     }
 
     public void Create_player()
     {
