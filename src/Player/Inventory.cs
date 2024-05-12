@@ -1,3 +1,5 @@
+namespace Player;
+
 using System;
 using Godot;
 
@@ -8,7 +10,7 @@ public partial class Inventory : Node
     private int activeSlotIndex = 0;
 
     public InventoryItem[] _items = new InventoryItem[InventorySize];
-    private PlayerRef _player;
+    private Player _player;
 
     public Inventory(Node parent)
     {
@@ -17,7 +19,7 @@ public partial class Inventory : Node
 
     public override void _Ready()
     {
-        _player = GetParent<PlayerRef>();
+        _player = GetParent<Player>();
     }
 
     public void SetActiveSlot(int index)
@@ -25,7 +27,6 @@ public partial class Inventory : Node
         if (index >= 0 && index < InventorySize)
         {
             activeSlotIndex = index;
-            ApplyActiveItemEffects();
         }
     }
 
@@ -49,13 +50,6 @@ public partial class Inventory : Node
             _items[slotIndex] = null;
         }
     }
-
-    private void ApplyActiveItemEffects()
-    {
-        _player.ResetStats();
-
-        _items[activeSlotIndex]?.ApplyEffect(_player);
-    }
 }
 
 public abstract partial class InventoryItem : Node3D
@@ -63,5 +57,5 @@ public abstract partial class InventoryItem : Node3D
     public new string Name;
     public string Description;
 
-    public virtual void ApplyEffect(PlayerRef player) { }
+    public virtual void ApplyEffect(Player player) { }
 }

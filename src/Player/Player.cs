@@ -6,16 +6,19 @@ public partial class Player : CharacterBody3D
 {
     [Export]
     public string id;
-    private Inventory _inventory;
-    private Stats _stats;
+    public Stats Stats;
     private Movement _movement;
     private ItemPickUp _itemPickUp;
 
     public override void _Ready()
     {
-        _stats = new(id);
-        _itemPickUp = new(this, _inventory, GetNode<NavigationAgent3D>("Navigation"));
-        _movement = new(this, _stats, _itemPickUp, GetNode<AnimationTree>("AnimationTree"));
+        var inventory = new Inventory(this);
+        var area = GetNode<Area3D>("Area");
+        var navigation = GetNode<NavigationAgent3D>("Navigation");
+        var animation = GetNode<AnimationTree>("AnimationTree");
+        Stats = new(id);
+        _itemPickUp = new(this, inventory, area, animation, navigation);
+        _movement = new(this, Stats, _itemPickUp, animation, navigation);
     }
 
     public override void _PhysicsProcess(double delta)

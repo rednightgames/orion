@@ -27,8 +27,6 @@ public partial class Camera : Camera3D
 
     public override void _PhysicsProcess(double delta)
     {
-        GD.Print("_player.Rotation ", _player.Rotation);
-        GD.Print("_rotation        ", _rotation);
         if (Zoom != _targetZoom)
         {
             float newZoom = Mathf.Lerp(Zoom, _targetZoom, zoomSpeed);
@@ -82,7 +80,7 @@ public partial class Camera : Camera3D
             CameraRotationDuration
         );
         _isCameraRotating = true;
-        _cameraTween.Connect("finished", new Callable(this, nameof(OnCameraRotationCompleted)));
+        _cameraTween.Finished += OnCameraRotationCompleted;
     }
 
     private void DisposeCameraTween()

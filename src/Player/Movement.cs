@@ -9,14 +9,16 @@ public class Movement
     private ItemPickUp _itemPickUp;
     private AnimationTree _anim;
     private AnimationNodeStateMachinePlayback _state;
+    private NavigationAgent3D _navigation;
 
-    public Movement(Player player, Stats stats, ItemPickUp itemPickUp, AnimationTree anim)
+    public Movement(Player player, Stats stats, ItemPickUp itemPickUp, AnimationTree anim, NavigationAgent3D navigation)
     {
         _player = player;
         _stats = stats;
         _itemPickUp = itemPickUp;
         _anim = anim;
         _state = (AnimationNodeStateMachinePlayback)anim.Get("parameters/playback");
+        _navigation = navigation;
     }
 
     public void Moving(double delta)
@@ -30,10 +32,10 @@ public class Movement
 
         if (inputDirection != Vector3.Zero)
         {
-            _itemPickUp._isMovingToItem = false;
+            _itemPickUp.MovingToItem = false;
         }
 
-        if (inputDirection != Vector3.Zero && !_itemPickUp._isMovingToItem)
+        if (inputDirection != Vector3.Zero && !_itemPickUp.MovingToItem)
         {
             Vector3 rotatedInputDirection = inputDirection
                 .Rotated(Vector3.Up, _player.Rotation.Y)
@@ -57,5 +59,17 @@ public class Movement
         {
             _state.Travel("idle");
         }
+
+        if (
+            Input.IsActionPressed("ui_accept")
+            && _itemPickUp.HasTargetItem
+            && !_itemPickUp.MovingToItem
+            && inputDirection == Vector3.Zero
+        )
+        {
+            _itemPickUp.UpdateNavigation();
+        }
+
+        _itemPickUp.Moving(delta);
     }
 }

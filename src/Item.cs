@@ -1,5 +1,6 @@
 using System;
 using Godot;
+using Player;
 using ResourceManager;
 
 public partial class Item : InventoryItem
