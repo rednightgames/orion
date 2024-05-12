@@ -12,7 +12,9 @@ public partial class Main : Node3D
         Spawn_Items();
     }
 
-    public override void _Process(double delta) { }
+    public override void _Process(double delta) 
+    {
+     }
 
     public void Create_player()
     {

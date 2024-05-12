@@ -11,7 +11,6 @@ public partial class Player : CharacterBody3D
         {
             _targetItem = _area.GetOverlappingAreas().Last();
         }
-        _healthScale.playerHealth = playerHealth;
 
         Vector3 inputDirection = new Vector3(
             Input.GetActionStrength("move_right") - Input.GetActionStrength("move_left"),

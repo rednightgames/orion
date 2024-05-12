@@ -3,7 +3,6 @@
 [ext_resource type="Script" path="res://src/Main.cs" id="1_kc2wc"]
 [ext_resource type="MeshLibrary" uid="uid://brcedkokqnmt4" path="res://mesh1.tres" id="2_c6ntw"]
 [ext_resource type="PackedScene" uid="uid://ey7rl5klok2w" path="res://scenes/Tree.tscn" id="2_h0k0k"]
-[ext_resource type="PackedScene" uid="uid://dppscjxu2y6vx" path="res://scenes/Pause.tscn" id="3_tsrnd"]
 [ext_resource type="PackedScene" uid="uid://bl87xmfiecoj8" path="res://scenes/day_night_cycle.tscn" id="4_ub5dq"]
 [ext_resource type="PackedScene" uid="uid://b7iupg4owehov" path="res://scenes/Entity.tscn" id="7_fxps0"]
 [ext_resource type="PackedScene" path="res://scenes/UI.tscn" id="7_x4nik"]
@@ -31,10 +30,6 @@ shadow_enabled = true
 shadow_normal_bias = 0.0
 shadow_blur = 0.1
 
-[node name="Pause" parent="." instance=ExtResource("3_tsrnd")]
-visible = false
-anchors_preset = -1
-
 [node name="Objects" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.012, 0, 0.008)
 
@@ -46,9 +41,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.49138, 0, 0.910415)
 
 [node name="Tree3" parent="Objects" instance=ExtResource("2_h0k0k")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.57651, 0, 2.94138)
-
-[node name="LevelTimer" type="Timer" parent="."]
-autostart = true
 
 [node name="DayNightCycle" parent="." instance=ExtResource("4_ub5dq")]
 

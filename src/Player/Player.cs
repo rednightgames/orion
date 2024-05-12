@@ -14,8 +14,6 @@ public partial class Player : CharacterBody3D
     private bool _isCameraRotating = false;
     private Inventory _inventory;
     private Area3D _area;
-    public int playerHealth = 10;
-    private HealthScale _healthScale;
     private Dictionary<string, object> _initialPropertyValues = new Dictionary<string, object> { };
 
     internal void Init(float speed)
@@ -32,8 +30,9 @@ public partial class Player : CharacterBody3D
         _anim = GetNode<AnimationTree>("AnimationTree");
         _stateMachine = (AnimationNodeStateMachinePlayback)_anim.Get("parameters/playback");
         _playerCamera = GetNode<PlayerCamera>("PlayerCamera");
-        _healthScale = GetNode<HealthScale>("../UI/HealthScale");
         _area = GetNode<Area3D>("Area");
+        Control ui = GD.Load<PackedScene>("res://scenes/UI.tscn").Instantiate<Control>();
+        AddChild(ui);
     }
 
     public override void _Input(InputEvent @event)
