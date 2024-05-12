@@ -1,5 +1,6 @@
 namespace Player;
 
+using System;
 using Godot;
 
 public partial class Camera : Camera3D
@@ -75,9 +76,9 @@ public partial class Camera : Camera3D
         DisposeCameraTween();
         _cameraTween = CreateTween();
         _cameraTween.TweenProperty(
-            this,
+            _player,
             "rotation",
-            new Vector3(GlobalRotation.X, _rotation.Y, GlobalRotation.Z),
+            new Vector3(0, _rotation.Y, 0),
             CameraRotationDuration
         );
         _isCameraRotating = true;
@@ -93,7 +94,7 @@ public partial class Camera : Camera3D
     private void OnCameraRotationCompleted()
     {
         _isCameraRotating = false;
-        _rotation.Y = Mathf.Wrap(GlobalPosition.Y, -Mathf.Pi, Mathf.Pi);
-        _player.Rotation = new Vector3(GlobalPosition.X, _rotation.Y, GlobalPosition.Z);
+        _rotation.Y = Mathf.Wrap((float)Math.Round(_rotation.Y, 4), -Mathf.Pi, Mathf.Pi);
+        _player.Rotation = new Vector3(0, _rotation.Y, 0);
     }
 }
