@@ -14,7 +14,7 @@ public partial class DayNightCycle : Node
         durationevening = 20,
         durationnight = 10;
     private TimeState state;
-    private int leveltime;
+    public double leveltime;
     private int cycletimer;
     private int durationcycle;
     public int countday = 1;
@@ -29,7 +29,7 @@ public partial class DayNightCycle : Node
 
     public override void _Ready()
     {
-        leveltime = 0;
+        leveltime = 0f;
         cycletimer = 0;
         durationcycle = durationday + durationevening + durationnight;
         _dirLight = GetNode<DirectionalLight3D>("../DirectionalLight3D");

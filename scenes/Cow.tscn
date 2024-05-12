@@ -1,0 +1,114 @@
+[gd_scene load_steps=13 format=3 uid="uid://c0q3bnah71v8a"]
+
+[ext_resource type="Texture2D" uid="uid://dlslmmmw5y2ns" path="res://assets/characters/cow.png" id="1_ux2bx"]
+[ext_resource type="Script" path="res://src/Cow.cs" id="2_bq744"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ygiuq"]
+radius = 0.0664674
+height = 0.292
+
+[sub_resource type="Animation" id="Animation_v3i64"]
+resource_name = "idle"
+length = 1.8
+loop_mode = 1
+step = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite3D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 1, 1.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [1, 0, 2, 0]
+}
+
+[sub_resource type="Animation" id="Animation_6teut"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite3D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_jnvrm"]
+resource_name = "walk"
+length = 0.6
+step = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite3D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [3, 4]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_8imc3"]
+_data = {
+"RESET": SubResource("Animation_6teut"),
+"idle": SubResource("Animation_v3i64"),
+"walk": SubResource("Animation_jnvrm")
+}
+
+[sub_resource type="AnimationNodeBlendSpace1D" id="AnimationNodeBlendSpace1D_tf8mk"]
+
+[sub_resource type="AnimationNodeBlendSpace1D" id="AnimationNodeBlendSpace1D_bbfw1"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_hid7a"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_82hgo"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_5tpk7"]
+states/BlendSpace1D/node = SubResource("AnimationNodeBlendSpace1D_bbfw1")
+states/BlendSpace1D/position = Vector2(346, 118)
+"states/BlendSpace1D 2/node" = SubResource("AnimationNodeBlendSpace1D_tf8mk")
+"states/BlendSpace1D 2/position" = Vector2(546, 118)
+states/End/position = Vector2(815, 118)
+states/Start/position = Vector2(196, 118)
+transitions = ["Start", "BlendSpace1D", SubResource("AnimationNodeStateMachineTransition_hid7a"), "BlendSpace1D", "BlendSpace1D 2", SubResource("AnimationNodeStateMachineTransition_82hgo")]
+
+[node name="Cow" type="CharacterBody3D"]
+script = ExtResource("2_bq744")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.143488, 0)
+shape = SubResource("CapsuleShape3D_ygiuq")
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(1.19565, 0, 0, 0, 1.19566, 0, 0, 0, 1.19566, 0, 0, 0)
+centered = false
+offset = Vector2(-16, -3)
+pixel_size = 0.02
+billboard = 1
+shaded = true
+alpha_cut = 2
+texture_filter = 0
+texture = ExtResource("1_ux2bx")
+hframes = 3
+vframes = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_8imc3")
+}
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource("AnimationNodeStateMachine_5tpk7")
+parameters/BlendSpace1D/blend_position = 0
+"parameters/BlendSpace1D 2/blend_position" = 0
