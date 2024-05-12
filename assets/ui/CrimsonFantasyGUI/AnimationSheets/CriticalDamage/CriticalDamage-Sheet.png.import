@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bc4yph8x56ln"
-path="res://.godot/imported/egg_item.png-91fb12ec136e90168baf02d0ce61f7bb.ctex"
+uid="uid://jjqg1dfnikjx"
+path="res://.godot/imported/CriticalDamage-Sheet.png-2fa3be6cfe6deae49f07a843d1b497d2.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/items/egg_item.png"
-dest_files=["res://.godot/imported/egg_item.png-91fb12ec136e90168baf02d0ce61f7bb.ctex"]
+source_file="res://assets/ui/CrimsonFantasyGUI/AnimationSheets/CriticalDamage/CriticalDamage-Sheet.png"
+dest_files=["res://.godot/imported/CriticalDamage-Sheet.png-2fa3be6cfe6deae49f07a843d1b497d2.ctex"]
 
 [params]
 

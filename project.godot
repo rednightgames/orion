@@ -19,9 +19,24 @@ config/icon="res://icon.svg"
 
 GameManager="*res://src/GameManager.cs"
 
+[display]
+
+window/stretch/mode="viewport"
+window/stretch/aspect="expand"
+
 [dotnet]
 
 project/assembly_name="orion"
+
+[file_customization]
+
+folder_colors={
+"res://addons/": "red",
+"res://assets/": "orange",
+"res://data/": "teal",
+"res://scenes/": "green",
+"res://src/": "pink"
+}
 
 [input]
 

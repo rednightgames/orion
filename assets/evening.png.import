@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cesxffdsfiotb"
-path="res://.godot/imported/milk_item.png-2aa6fd18f97c610f5b6dc6cafe344b32.ctex"
+uid="uid://bvbft4i4cwqya"
+path="res://.godot/imported/evening.png-cc7e1e09d95b0bdecc240aaf5ece0010.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/items/milk_item.png"
-dest_files=["res://.godot/imported/milk_item.png-2aa6fd18f97c610f5b6dc6cafe344b32.ctex"]
+source_file="res://assets/evening.png"
+dest_files=["res://.godot/imported/evening.png-cc7e1e09d95b0bdecc240aaf5ece0010.ctex"]
 
 [params]
 

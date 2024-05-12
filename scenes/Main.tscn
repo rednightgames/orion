@@ -3,11 +3,11 @@
 [ext_resource type="Script" path="res://src/Main.cs" id="1_kc2wc"]
 [ext_resource type="MeshLibrary" uid="uid://brcedkokqnmt4" path="res://mesh1.tres" id="2_c6ntw"]
 [ext_resource type="PackedScene" uid="uid://ey7rl5klok2w" path="res://scenes/Tree.tscn" id="2_h0k0k"]
-[ext_resource type="PackedScene" uid="uid://dppscjxu2y6vx" path="res://scenes/Pause.tscn" id="3_tsrnd"]
 [ext_resource type="PackedScene" uid="uid://bl87xmfiecoj8" path="res://scenes/day_night_cycle.tscn" id="4_ub5dq"]
-[ext_resource type="Script" path="res://src/UI.cs" id="6_2ss28"]
 [ext_resource type="PackedScene" uid="uid://b7iupg4owehov" path="res://scenes/Entity.tscn" id="7_fxps0"]
 [ext_resource type="PackedScene" uid="uid://c0q3bnah71v8a" path="res://scenes/Cow.tscn" id="8_e30q4"]
+[ext_resource type="PackedScene" path="res://scenes/UI.tscn" id="7_x4nik"]
+[ext_resource type="PackedScene" uid="uid://dqp6s08ipcq5c" path="res://scenes/Item.tscn" id="8_o1sou"]
 
 [sub_resource type="Environment" id="Environment_vv2o1"]
 background_mode = 1
@@ -16,27 +16,20 @@ glow_hdr_threshold = 1.85
 
 [sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_gmb4t"]
 
+[sub_resource type="NavigationMesh" id="NavigationMesh_ix7je"]
+vertices = PackedVector3Array(0.343143, 0.501667, 3.53595, 0.843143, 0.501667, 4.28595, 5.09314, 0.501667, 0.285954, 5.09314, 0.501667, -0.214046, 5.09314, 0.501667, -0.214046, 1.09314, 0.501667, -4.21405, 0.343143, 0.501667, -3.46405, -0.406857, 0.501667, -3.46405, -1.15686, 0.501667, -4.21405, -5.15686, 0.501667, -0.214046, 5.09314, 0.501667, -0.214046, 0.343143, 0.501667, -3.46405, -0.406857, 0.501667, -3.46405, -5.15686, 0.501667, -0.214046, -1.15686, 0.501667, 4.03595, 0.343143, 0.501667, 3.53595)
+polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1), PackedInt32Array(6, 5, 4), PackedInt32Array(7, 9, 8), PackedInt32Array(11, 10, 12), PackedInt32Array(12, 10, 15), PackedInt32Array(12, 15, 14), PackedInt32Array(12, 14, 13)]
+agent_radius = 0.3
+
 [node name="Level" type="Node3D"]
 script = ExtResource("1_kc2wc")
 SpawnPosition = Vector3(0, 0.05, 0)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.34202, 0.939693, 0, -0.939693, 0.34202, 0.004035, 4.90278, -0.00167143)
+transform = Transform3D(0.34202, -0.883022, 0.321394, 0, 0.34202, 0.939693, -0.939693, -0.321394, 0.116978, 0, 5, 0)
 shadow_enabled = true
 shadow_normal_bias = 0.0
 shadow_blur = 0.1
-
-[node name="GridMap" type="GridMap" parent="."]
-transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 0, 0, 0)
-mesh_library = ExtResource("2_c6ntw")
-cell_size = Vector3(2, 0.005, 2)
-data = {
-"cells": PackedInt32Array(65535, 65535, 0, 65535, 0, 0, 0, 1, 0, 1, 1, 0, 1, 0, 0, 1, 65535, 0, 0, 65535, 0, 0, 65534, 0, 0, 0, 0, 65535, 1, 0, 65534, 1, 0, 1, 65534, 0, 0, 65533, 0, 65535, 65533, 0, 65534, 65533, 0, 65533, 65533, 0, 65533, 65534, 0, 65533, 65535, 0, 65534, 0, 0, 65534, 65535, 0, 65535, 65534, 0, 65534, 65534, 0, 65533, 0, 0, 65533, 1, 0, 1, 65533, 0, 65534, 2, 0, 65535, 2, 0, 0, 2, 0, 1, 2, 0, 2, 2, 0, 2, 1, 0, 2, 0, 0, 2, 65535, 0, 2, 65534, 0)
-}
-
-[node name="Pause" parent="." instance=ExtResource("3_tsrnd")]
-visible = false
-anchors_preset = -1
 
 [node name="Objects" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.012, 0, 0.008)
@@ -50,40 +43,35 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.49138, 0, 0.910415)
 [node name="Tree3" parent="Objects" instance=ExtResource("2_h0k0k")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.57651, 0, 2.94138)
 
-[node name="LevelTimer" type="Timer" parent="."]
-autostart = true
-
 [node name="DayNightCycle" parent="." instance=ExtResource("4_ub5dq")]
-durationday = 10
-durationevening = 5
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_vv2o1")
 camera_attributes = SubResource("CameraAttributesPractical_gmb4t")
 
 [node name="Entity" parent="." instance=ExtResource("7_fxps0")]
-_hungryChange = 1.0
 
-[node name="UI" type="Control" parent="."]
-layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-script = ExtResource("6_2ss28")
+[node name="UI" parent="." instance=ExtResource("7_x4nik")]
 
-[node name="HungerScale" type="ProgressBar" parent="UI"]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = -0.025
-anchor_top = -0.15
-anchor_right = 0.975
-anchor_bottom = -0.15
-offset_left = 342.0
-offset_top = 19.0
-offset_right = 803.0
-offset_bottom = 46.0
-grow_horizontal = 2
-show_percentage = false
+[node name="Item2" parent="." instance=ExtResource("8_o1sou")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.421137, 0, 1.79061)
+Id = "grass"
+
+[node name="Item" parent="." instance=ExtResource("8_o1sou")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 0)
+Id = "egg"
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -0.00349617, 7.15256e-06, 0.00871658)
+navigation_mesh = SubResource("NavigationMesh_ix7je")
+
+[node name="GridMap" type="GridMap" parent="NavigationRegion3D"]
+transform = Transform3D(0.471405, 0, 0.471405, 0, 0.666667, 0, -0.471405, 0, 0.471405, 0, 0, 0)
+mesh_library = ExtResource("2_c6ntw")
+cell_size = Vector3(2, 0.005, 2)
+data = {
+"cells": PackedInt32Array(65535, 65535, 0, 65535, 0, 0, 0, 1, 0, 1, 1, 0, 1, 0, 0, 1, 65535, 0, 0, 65535, 0, 0, 65534, 0, 0, 0, 0, 65535, 1, 0, 65534, 1, 0, 1, 65534, 0, 0, 65533, 0, 65535, 65533, 0, 65534, 65533, 0, 65533, 65533, 0, 65533, 65534, 0, 65533, 65535, 0, 65534, 0, 0, 65534, 65535, 0, 65535, 65534, 0, 65534, 65534, 0, 65533, 0, 0, 65533, 1, 0, 1, 65533, 0, 65534, 2, 0, 65535, 2, 0, 0, 2, 0, 1, 2, 0, 2, 2, 0, 2, 1, 0, 2, 0, 0, 2, 65535, 0, 2, 65534, 0)
+}
 
 [node name="Cow" parent="." instance=ExtResource("8_e30q4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.447779, 0, 2.1284)
