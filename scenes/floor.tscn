@@ -1,13 +1,17 @@
 [gd_scene load_steps=4 format=3 uid="uid://cjajfqvm0vk4u"]
 
-[ext_resource type="Texture2D" uid="uid://bh1uc52iaif1m" path="res://icon.svg" id="1_6tdfp"]
+[ext_resource type="Texture2D" uid="uid://dkwrlr7kspr4r" path="res://assets/grass.png" id="1_r080j"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_12m3g"]
-albedo_texture = ExtResource("1_6tdfp")
+albedo_color = Color(0.0406113, 0.392063, 0.0912644, 1)
+albedo_texture = ExtResource("1_r080j")
+albedo_texture_force_srgb = true
 texture_filter = 0
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_usdor"]
 material = SubResource("StandardMaterial3D_12m3g")
 
-[node name="MeshInstance3D" type="MeshInstance3D"]
+[node name="Node3D" type="Node3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("PlaneMesh_usdor")

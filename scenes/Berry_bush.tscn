@@ -1,0 +1,43 @@
+[gd_scene load_steps=5 format=3 uid="uid://dt6ph4oy7kwiv"]
+
+[ext_resource type="Texture2D" uid="uid://dnsut15hw1l8f" path="res://assets/objects/PC Computer - Dont Starve Dont Starve Together - Berry Bushes.png" id="1_qsw83"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_qwqoy"]
+size = Vector3(1, 0.490112, 1)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7be6g"]
+atlas = ExtResource("1_qsw83")
+region = Rect2(0, 0, 144, 152)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_32fl6"]
+atlas = ExtResource("1_qsw83")
+region = Rect2(224, 280, 144, 152)
+
+[node name="Berry Bush" type="Node3D"]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0.127472, 0)
+shape = SubResource("BoxShape3D_qwqoy")
+
+[node name="Bush" type="Sprite3D" parent="StaticBody3D"]
+transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 0, 0, 0)
+sorting_use_aabb_center = false
+centered = false
+offset = Vector2(-70, -5)
+billboard = 1
+shaded = true
+alpha_cut = 2
+texture_filter = 1
+texture = SubResource("AtlasTexture_7be6g")
+
+[node name="Berry" type="Sprite3D" parent="StaticBody3D"]
+transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 0, 0, 0)
+centered = false
+offset = Vector2(-70, -27)
+billboard = 1
+shaded = true
+alpha_cut = 2
+texture_filter = 1
+texture = SubResource("AtlasTexture_32fl6")

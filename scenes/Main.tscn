@@ -1,12 +1,12 @@
-[gd_scene load_steps=11 format=3 uid="uid://ykpdkwi1bhfp"]
+[gd_scene load_steps=12 format=3 uid="uid://ykpdkwi1bhfp"]
 
 [ext_resource type="Script" path="res://src/Main.cs" id="1_kc2wc"]
-[ext_resource type="MeshLibrary" uid="uid://brcedkokqnmt4" path="res://mesh1.tres" id="2_c6ntw"]
 [ext_resource type="PackedScene" uid="uid://ey7rl5klok2w" path="res://scenes/Tree.tscn" id="2_h0k0k"]
+[ext_resource type="PackedScene" uid="uid://dt6ph4oy7kwiv" path="res://scenes/Berry_bush.tscn" id="3_xg5tp"]
 [ext_resource type="PackedScene" uid="uid://bl87xmfiecoj8" path="res://scenes/day_night_cycle.tscn" id="4_ub5dq"]
 [ext_resource type="PackedScene" uid="uid://b7iupg4owehov" path="res://scenes/Entity.tscn" id="7_fxps0"]
+[ext_resource type="MeshLibrary" uid="uid://cmy8uh78pgeb6" path="res://33.tres" id="7_v1n0d"]
 [ext_resource type="PackedScene" uid="uid://c0q3bnah71v8a" path="res://scenes/Cow.tscn" id="8_e30q4"]
-[ext_resource type="PackedScene" path="res://scenes/UI.tscn" id="7_x4nik"]
 [ext_resource type="PackedScene" uid="uid://dqp6s08ipcq5c" path="res://scenes/Item.tscn" id="8_o1sou"]
 
 [sub_resource type="Environment" id="Environment_vv2o1"]
@@ -26,9 +26,8 @@ script = ExtResource("1_kc2wc")
 SpawnPosition = Vector3(0, 0.05, 0)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(0.34202, -0.883022, 0.321394, 0, 0.34202, 0.939693, -0.939693, -0.321394, 0.116978, 0, 5, 0)
+transform = Transform3D(1, 0, 0, 0, 0.173648, 0.984808, 0, -0.984808, 0.173648, 0, 5, 0)
 shadow_enabled = true
-shadow_normal_bias = 0.0
 shadow_blur = 0.1
 
 [node name="Objects" type="Node3D" parent="."]
@@ -43,6 +42,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.49138, 0, 0.910415)
 [node name="Tree3" parent="Objects" instance=ExtResource("2_h0k0k")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.57651, 0, 2.94138)
 
+[node name="Berry Bush" parent="Objects" instance=ExtResource("3_xg5tp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.988, 0, 2.992)
+
 [node name="DayNightCycle" parent="." instance=ExtResource("4_ub5dq")]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
@@ -50,8 +52,6 @@ environment = SubResource("Environment_vv2o1")
 camera_attributes = SubResource("CameraAttributesPractical_gmb4t")
 
 [node name="Entity" parent="." instance=ExtResource("7_fxps0")]
-
-[node name="UI" parent="." instance=ExtResource("7_x4nik")]
 
 [node name="Item2" parent="." instance=ExtResource("8_o1sou")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.421137, 0, 1.79061)
@@ -66,15 +66,13 @@ transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -0.00349617, 7.15256e-0
 navigation_mesh = SubResource("NavigationMesh_ix7je")
 
 [node name="GridMap" type="GridMap" parent="NavigationRegion3D"]
-transform = Transform3D(0.471405, 0, 0.471405, 0, 0.666667, 0, -0.471405, 0, 0.471405, 0, 0, 0)
-mesh_library = ExtResource("2_c6ntw")
-cell_size = Vector3(2, 0.005, 2)
+transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 0, 0, 0)
+mesh_library = ExtResource("7_v1n0d")
+cell_size = Vector3(2, 0.001, 2)
 data = {
-"cells": PackedInt32Array(65535, 65535, 0, 65535, 0, 0, 0, 1, 0, 1, 1, 0, 1, 0, 0, 1, 65535, 0, 0, 65535, 0, 0, 65534, 0, 0, 0, 0, 65535, 1, 0, 65534, 1, 0, 1, 65534, 0, 0, 65533, 0, 65535, 65533, 0, 65534, 65533, 0, 65533, 65533, 0, 65533, 65534, 0, 65533, 65535, 0, 65534, 0, 0, 65534, 65535, 0, 65535, 65534, 0, 65534, 65534, 0, 65533, 0, 0, 65533, 1, 0, 1, 65533, 0, 65534, 2, 0, 65535, 2, 0, 0, 2, 0, 1, 2, 0, 2, 2, 0, 2, 1, 0, 2, 0, 0, 2, 65535, 0, 2, 65534, 0)
+"cells": PackedInt32Array(65535, 0, 0, 65535, 65535, 0, 0, 0, 0, 0, 65535, 0, 65534, 0, 0, 65534, 65535, 0, 65534, 65534, 0, 65535, 65534, 0, 0, 65534, 0, 1, 65535, 0, 1, 0, 0, 0, 1, 0, 65535, 1, 0, 65534, 1, 0, 1, 1, 0, 1, 65534, 0, 65533, 0, 0, 65533, 65535, 0, 65533, 65534, 0, 65533, 65533, 0, 65534, 65533, 0, 65535, 65533, 0, 1, 65533, 0, 0, 65533, 0, 65535, 2, 0, 0, 2, 0, 1, 2, 0, 2, 2, 0, 2, 1, 0, 2, 0, 0, 2, 65535, 0)
 }
+metadata/_editor_floor_ = Vector3(0, 0, 0)
 
 [node name="Cow" parent="." instance=ExtResource("8_e30q4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.447779, 0, 2.1284)
-
-[connection signal="timeout" from="LevelTimer" to="DayNightCycle" method="_on_level_timer_timeout"]
-[connection signal="timeout" from="LevelTimer" to="Entity" method="EntityHungryTimer"]

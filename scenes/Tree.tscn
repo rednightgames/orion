@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://ey7rl5klok2w"]
 
-[ext_resource type="Texture2D" uid="uid://c3emd8nalo3k4" path="res://assets/objects/grass_biom_things.png" id="1_2l6fm"]
+[ext_resource type="Texture2D" uid="uid://toxgnxu3mjrn" path="res://assets/objects/PC Computer - Dont Starve Dont Starve Together - Evergreens.png" id="1_skgqm"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_w6gsv"]
 size = Vector3(0.125, 0.516, 0.125)
@@ -14,14 +14,14 @@ transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0.5, 0)
 shape = SubResource("BoxShape3D_w6gsv")
 
 [node name="Sprite3D" type="Sprite3D" parent="StaticBody3D"]
-transform = Transform3D(3.28386, 0, 0, 0, 4.30225, 0, 0, 0, 9.6058, 0, 0, 0)
+transform = Transform3D(0.7, 0, 0, 0, 0.917, 0, 0, 0, 2.047, 0, 0, 0)
 rotation_order = 0
 centered = false
-offset = Vector2(-16, -1)
+offset = Vector2(-115, -9)
 billboard = 1
 shaded = true
 alpha_cut = 2
-texture_filter = 0
-texture = ExtResource("1_2l6fm")
+texture_filter = 1
+texture = ExtResource("1_skgqm")
 region_enabled = true
-region_rect = Rect2(16, 0, 32, 32)
+region_rect = Rect2(1466.44, 800, 232, 360)
