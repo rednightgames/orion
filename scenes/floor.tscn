@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://dkwrlr7kspr4r" path="res://assets/grass.png" id="1_r080j"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_12m3g"]
-albedo_color = Color(0.0406113, 0.392063, 0.0912644, 1)
+albedo_color = Color(0.211765, 0.345098, 0.0784314, 1)
 albedo_texture = ExtResource("1_r080j")
 albedo_texture_force_srgb = true
 texture_filter = 0
