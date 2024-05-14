@@ -6,7 +6,7 @@ using System.IO;
 using Godot;
 using Newtonsoft.Json;
 
-public static class AssetManager
+public partial class AssetManager : Node
 {
     private static readonly Dictionary<string, string> _directoryTypeMap = new Dictionary<
         string,
@@ -60,7 +60,7 @@ public static class AssetManager
         }
         else
         {
-            GD.Print("Object with id not found in cache");
+            GD.Print("Object with id(", id, ") not found in cache");
             return null;
         }
     }

@@ -2,6 +2,7 @@ using System;
 using Godot;
 using ResourceManager;
 
+[Tool]
 public partial class Item : InventoryItem
 {
     [Export]

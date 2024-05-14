@@ -10,6 +10,6 @@ public partial class HealthBar : Label
 
 	public override void _Process(double delta)
 	{
-		Text = "HP: " + _player.playerHealth;
+		//Text = "HP: " + _player;
 	}
 }
