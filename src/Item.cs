@@ -6,7 +6,17 @@ using ResourceManager;
 public partial class Item : InventoryItem
 {
     [Export]
-    public string Id;
+    public string Id
+    {
+        get { return _id; }
+        set
+        {
+            _id = value;
+            _sprite.Texture = null;
+            PostInit();
+        }
+    }
+    private string _id = "";
     public event Action OnInit;
     private Sprite3D _sprite;
 
@@ -21,9 +31,15 @@ public partial class Item : InventoryItem
 
     protected void PostInit()
     {
-        TextureResource data = AssetManager.Load<TextureResource>(Id);
-        Name = data.Name;
-        Description = data.Description;
-        _sprite.Texture = data.Resource;
+        if (_id != null)
+        {
+            TextureResource data = AssetManager.Load<TextureResource>(_id);
+            if (data != null)
+            {
+                Name = data.Name;
+                Description = data.Description;
+                _sprite.Texture = data.Resource;
+            }
+        }
     }
 }

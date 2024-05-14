@@ -60,8 +60,12 @@ public partial class AssetManager : Node
         }
         else
         {
-            GD.Print("Object with id(", id, ") not found in cache");
-            return null;
+            TextureResource textureObject = new TextureResource
+            {
+                Resource = ResourceLoader.Load<Texture2D>("res://assets/items/notexists.png")
+            };
+            GD.Print("Object with id( " , id, " ) not found in cache");
+            return (T)textureObject;
         }
     }
 

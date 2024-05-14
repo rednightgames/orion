@@ -5,8 +5,11 @@
 [sub_resource type="SphereShape3D" id="SphereShape3D_lyv66"]
 radius = 0.185497
 
-[node name="Item" type="Node3D" groups=["item"]]
+[node name="Item" type="Node3D" node_paths=PackedStringArray("_sprite") groups=["item"]]
 script = ExtResource("1_g735d")
+Name = ""
+Description = ""
+_sprite = NodePath("Sprite")
 
 [node name="Area3D" type="Area3D" parent="." groups=["item"]]
 monitoring = false
