@@ -260,6 +260,7 @@ parameters/walk/blend_position = Vector2(-0.08, 0.978836)
 [node name="PlayerCamera" parent="." instance=ExtResource("3_bj5bj")]
 transform = Transform3D(0.39887, 0, 0, 0, 0.136422, 0.374816, 0, -0.374816, 0.136422, 0, 1.50985, 0.750177)
 size = 2.0
+zoomSpeed = null
 
 [node name="Navigation" type="NavigationAgent3D" parent="."]
 avoidance_enabled = true

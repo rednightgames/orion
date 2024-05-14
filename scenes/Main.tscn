@@ -6,7 +6,6 @@
 [ext_resource type="PackedScene" uid="uid://bl87xmfiecoj8" path="res://scenes/day_night_cycle.tscn" id="4_ub5dq"]
 [ext_resource type="PackedScene" uid="uid://b7iupg4owehov" path="res://scenes/Entity.tscn" id="7_fxps0"]
 [ext_resource type="PackedScene" uid="uid://c0q3bnah71v8a" path="res://scenes/Cow.tscn" id="8_e30q4"]
-[ext_resource type="PackedScene" path="res://scenes/UI.tscn" id="7_x4nik"]
 [ext_resource type="PackedScene" uid="uid://dqp6s08ipcq5c" path="res://scenes/Item.tscn" id="8_o1sou"]
 
 [sub_resource type="Environment" id="Environment_vv2o1"]
@@ -44,14 +43,17 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.49138, 0, 0.910415)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.57651, 0, 2.94138)
 
 [node name="DayNightCycle" parent="." instance=ExtResource("4_ub5dq")]
+durationday = null
+durationevening = null
+durationnight = null
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_vv2o1")
 camera_attributes = SubResource("CameraAttributesPractical_gmb4t")
 
 [node name="Entity" parent="." instance=ExtResource("7_fxps0")]
-
-[node name="UI" parent="." instance=ExtResource("7_x4nik")]
+hungryValueMax = null
+hungryValueMin = null
 
 [node name="Item2" parent="." instance=ExtResource("8_o1sou")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.421137, 0, 1.79061)
@@ -76,5 +78,6 @@ data = {
 [node name="Cow" parent="." instance=ExtResource("8_e30q4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.447779, 0, 2.1284)
 
-[connection signal="timeout" from="LevelTimer" to="DayNightCycle" method="_on_level_timer_timeout"]
-[connection signal="timeout" from="LevelTimer" to="Entity" method="EntityHungryTimer"]
+[node name="Item3" parent="." instance=ExtResource("8_o1sou")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.21144, 2.38419e-07, 2.15007)
+Id = "egg"

@@ -26,7 +26,6 @@ public partial class DayNightCycle : Node
     public string _timeDay;
     public Timer timer;
 
-
     public override void _Ready()
     {
         leveltime = 0f;
@@ -74,11 +73,13 @@ public partial class DayNightCycle : Node
                 break;
         }
     }
-    public void TimerTimeout() 
+
+    public void TimerTimeout()
     {
         leveltime++;
         cycletimer++;
     }
+
     public void day_state()
     {
         _timeDay = "DAY";
@@ -114,5 +115,4 @@ public partial class DayNightCycle : Node
             _transition
         );
     }
-    
 }
