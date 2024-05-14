@@ -70,10 +70,11 @@ public partial class Cow : CharacterBody3D
     // Generate a random point within the wander radius
     private Vector3 GetNewTargetPosition()
     {
-        return GlobalTransform.Origin + new Vector3(
-            (float)GD.RandRange(-WanderRadius, WanderRadius),
-            0.0f,
-            (float)GD.RandRange(-WanderRadius, WanderRadius)
-        );
+        return GlobalTransform.Origin
+            + new Vector3(
+                (float)GD.RandRange(-WanderRadius, WanderRadius),
+                0.0f,
+                (float)GD.RandRange(-WanderRadius, WanderRadius)
+            );
     }
 }
