@@ -20,7 +20,7 @@ git clone https://github.com/rednightgames/orion.git
 git clone git@github.com:rednightgames/orion.git
 
 # Install all dependencies
-yarn restore
+make restore
 
 # Open project in Godot editor
 godot -e
