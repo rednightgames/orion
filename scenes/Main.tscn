@@ -49,12 +49,17 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.57651, 0, 2.94138)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.988, 0, 2.992)
 
 [node name="DayNightCycle" parent="." instance=ExtResource("4_ub5dq")]
+durationday = null
+durationevening = null
+durationnight = null
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_vv2o1")
 camera_attributes = SubResource("CameraAttributesPractical_gmb4t")
 
 [node name="Entity" parent="." instance=ExtResource("7_fxps0")]
+hungryValueMax = null
+hungryValueMin = null
 
 [node name="Item2" parent="." instance=ExtResource("8_o1sou")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.421137, 0, 1.79061)
@@ -79,3 +84,7 @@ metadata/_editor_floor_ = Vector3(0, 0, 0)
 
 [node name="Cow" parent="." instance=ExtResource("8_e30q4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.447779, 0, 2.1284)
+
+[node name="Item3" parent="." instance=ExtResource("8_o1sou")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.21144, 2.38419e-07, 2.15007)
+Id = "egg"

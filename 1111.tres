@@ -22,6 +22,8 @@ data = {
 
 [sub_resource type="ImageTexture" id="ImageTexture_6h177"]
 image = SubResource("Image_7xmgi")
+[sub_resource type="ImageTexture" id="ImageTexture_xyjdq"]
+image = SubResource("Image_t8hj4")
 
 [resource]
 item/0/name = "MeshInstance3D"
