@@ -2,9 +2,9 @@
 
 [ext_resource type="Script" path="res://src/Main.cs" id="1_kc2wc"]
 [ext_resource type="PackedScene" uid="uid://ey7rl5klok2w" path="res://scenes/Tree.tscn" id="2_h0k0k"]
-[ext_resource type="PackedScene" uid="uid://dt6ph4oy7kwiv" path="res://scenes/Berry_bush.tscn" id="3_xg5tp"]
+[ext_resource type="PackedScene" uid="uid://dlg2y62ce7ppg" path="res://scenes/Berry_bush.tscn" id="3_xg5tp"]
 [ext_resource type="PackedScene" uid="uid://bl87xmfiecoj8" path="res://scenes/day_night_cycle.tscn" id="4_ub5dq"]
-[ext_resource type="MeshLibrary" uid="uid://db1pau18vch1i" path="res://1111.tres" id="7_8dx0x"]
+[ext_resource type="MeshLibrary" uid="uid://djtu7dmxv8yjq" path="res://1111.tres" id="7_8dx0x"]
 [ext_resource type="PackedScene" uid="uid://b7iupg4owehov" path="res://scenes/Entity.tscn" id="7_fxps0"]
 [ext_resource type="PackedScene" uid="uid://c0q3bnah71v8a" path="res://scenes/Cow.tscn" id="8_e30q4"]
 [ext_resource type="PackedScene" uid="uid://dqp6s08ipcq5c" path="res://scenes/Item.tscn" id="8_o1sou"]
@@ -12,7 +12,6 @@
 [sub_resource type="Environment" id="Environment_vv2o1"]
 background_mode = 1
 background_color = Color(0.246609, 0.46835, 1, 1)
-tonemap_mode = 3
 tonemap_white = 0.0
 glow_hdr_threshold = 1.85
 

@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://ey7rl5klok2w"]
 
-[ext_resource type="Texture2D" uid="uid://toxgnxu3mjrn" path="res://assets/objects/PC Computer - Dont Starve Dont Starve Together - Evergreens.png" id="1_skgqm"]
+[ext_resource type="Texture2D" path="res://assets/objects/PC Computer - Dont Starve Dont Starve Together - Evergreens.png" id="1_skgqm"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_w6gsv"]
 size = Vector3(0.125, 0.516, 0.125)

@@ -1,6 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://dt6ph4oy7kwiv"]
+[gd_scene load_steps=5 format=3 uid="uid://dlg2y62ce7ppg"]
 
-[ext_resource type="Texture2D" uid="uid://dnsut15hw1l8f" path="res://assets/objects/PC Computer - Dont Starve Dont Starve Together - Berry Bushes.png" id="1_qsw83"]
+[ext_resource type="Texture2D" path="res://assets/objects/PC Computer - Dont Starve Dont Starve Together - Berry Bushes.png" id="1_qsw83"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_qwqoy"]
 size = Vector3(1, 0.490112, 1)
