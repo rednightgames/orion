@@ -22,5 +22,17 @@ ehthumbs_vista.db
 logs
 *.log
 
-# Godot 4+ specific ignores
+### Yarn ###
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions
+.yarn-integrity
+
+### Dependency directories ###
+node_modules
+
+### Godot ###
 .godot/
