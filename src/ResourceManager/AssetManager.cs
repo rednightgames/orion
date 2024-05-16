@@ -13,7 +13,8 @@ public partial class AssetManager : Node
         string
     >
     {
-        { "res://data/items/", "item" }
+        { "res://data/items/", "item" },
+        { "res://data/objects/", "object" }
     };
 
     private static readonly Dictionary<string, Func<string, object>> _dataHandlers = new Dictionary<
@@ -21,7 +22,8 @@ public partial class AssetManager : Node
         Func<string, object>
     >
     {
-        { "item", JsonConvert.DeserializeObject<TextureResource> }
+        { "item", JsonConvert.DeserializeObject<TextureResource> },
+        { "object", JsonConvert.DeserializeObject<TextureResource> }
     };
 
     private static readonly Dictionary<string, object> _cache = new Dictionary<string, object>();

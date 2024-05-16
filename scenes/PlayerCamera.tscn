@@ -6,3 +6,4 @@
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.697234, 0.460233)
 current = true
 script = ExtResource("1_6p6gx")
+zoomSpeed = null

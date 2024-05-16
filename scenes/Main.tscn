@@ -1,13 +1,13 @@
 [gd_scene load_steps=12 format=3 uid="uid://ykpdkwi1bhfp"]
 
 [ext_resource type="Script" path="res://src/Main.cs" id="1_kc2wc"]
-[ext_resource type="PackedScene" uid="uid://ey7rl5klok2w" path="res://scenes/Tree.tscn" id="2_h0k0k"]
 [ext_resource type="PackedScene" uid="uid://dlg2y62ce7ppg" path="res://scenes/Berry_bush.tscn" id="3_xg5tp"]
 [ext_resource type="PackedScene" uid="uid://bl87xmfiecoj8" path="res://scenes/day_night_cycle.tscn" id="4_ub5dq"]
 [ext_resource type="MeshLibrary" uid="uid://djtu7dmxv8yjq" path="res://1111.tres" id="7_8dx0x"]
 [ext_resource type="PackedScene" uid="uid://b7iupg4owehov" path="res://scenes/Entity.tscn" id="7_fxps0"]
 [ext_resource type="PackedScene" uid="uid://c0q3bnah71v8a" path="res://scenes/Cow.tscn" id="8_e30q4"]
 [ext_resource type="PackedScene" uid="uid://dqp6s08ipcq5c" path="res://scenes/Item.tscn" id="8_o1sou"]
+[ext_resource type="PackedScene" uid="uid://cxd0ecua3mo8u" path="res://scenes/Object.tscn" id="9_7cu0w"]
 
 [sub_resource type="Environment" id="Environment_vv2o1"]
 background_mode = 1
@@ -18,34 +18,22 @@ glow_hdr_threshold = 1.85
 [sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_gmb4t"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_ix7je"]
-vertices = PackedVector3Array(0.343143, 0.501667, 3.53595, 0.843143, 0.501667, 4.28595, 5.09314, 0.501667, 0.285954, 5.09314, 0.501667, -0.214046, 5.09314, 0.501667, -0.214046, 1.09314, 0.501667, -4.21405, 0.343143, 0.501667, -3.46405, -0.406857, 0.501667, -3.46405, -1.15686, 0.501667, -4.21405, -5.15686, 0.501667, -0.214046, 5.09314, 0.501667, -0.214046, 0.343143, 0.501667, -3.46405, -0.406857, 0.501667, -3.46405, -5.15686, 0.501667, -0.214046, -1.15686, 0.501667, 4.03595, 0.343143, 0.501667, 3.53595)
-polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1), PackedInt32Array(6, 5, 4), PackedInt32Array(7, 9, 8), PackedInt32Array(11, 10, 12), PackedInt32Array(12, 10, 15), PackedInt32Array(12, 15, 14), PackedInt32Array(12, 14, 13)]
+vertices = PackedVector3Array(-0.985284, 0.5, 3.92893, 0.264716, 0.5, 4.92893, 2.26472, 0.5, 2.67893, -1.73528, 0.5, 3.92893, -0.985284, 0.5, 3.92893, 2.26472, 0.5, 2.67893, 1.01472, 0.5, -4.07107, -1.23528, 0.5, -6.57107, -7.98528, 0.5, -0.0710702, 3.26472, 0.5, 2.67893, 4.51472, 0.5, 3.67893, 8.01472, 0.5, 0.17893, 2.26472, 0.5, 2.67893, 3.26472, 0.5, 2.67893, 8.01472, 0.5, 0.17893, 3.01472, 0.5, -5.07107, 1.76472, 0.5, -4.07107, -7.98528, 0.5, -0.0710702, -2.98528, 0.5, 5.17893, -1.73528, 0.5, 3.92893, 2.26472, 0.5, 2.67893, 1.76472, 0.5, -4.07107, 1.01472, 0.5, -4.07107)
+polygons = [PackedInt32Array(2, 1, 0), PackedInt32Array(4, 3, 5), PackedInt32Array(5, 3, 6), PackedInt32Array(6, 3, 7), PackedInt32Array(7, 3, 8), PackedInt32Array(11, 10, 9), PackedInt32Array(13, 12, 14), PackedInt32Array(14, 12, 16), PackedInt32Array(14, 16, 15), PackedInt32Array(19, 18, 17), PackedInt32Array(22, 21, 20)]
 agent_radius = 0.3
 
 [node name="Level" type="Node3D"]
 script = ExtResource("1_kc2wc")
 SpawnPosition = Vector3(0, 0.05, 0)
 
+[node name="Berry Bush" parent="." instance=ExtResource("3_xg5tp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, 3)
+
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.173648, 0.984808, 0, -0.984808, 0.173648, 0, 5, 0)
 light_color = Color(0.982344, 0.810398, 1, 1)
 shadow_enabled = true
 shadow_blur = 0.1
-
-[node name="Objects" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.012, 0, 0.008)
-
-[node name="Tree" parent="Objects" instance=ExtResource("2_h0k0k")]
-transform = Transform3D(1.00836, 0, 0, 0, 1.00836, 0, 0, 0, 1.00836, 2.22125, -9.53674e-07, -2.08858)
-
-[node name="Tree2" parent="Objects" instance=ExtResource("2_h0k0k")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.49138, 0, 0.910415)
-
-[node name="Tree3" parent="Objects" instance=ExtResource("2_h0k0k")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.57651, 0, 2.94138)
-
-[node name="Berry Bush" parent="Objects" instance=ExtResource("3_xg5tp")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.988, 0, 2.992)
 
 [node name="DayNightCycle" parent="." instance=ExtResource("4_ub5dq")]
 durationday = null
@@ -87,3 +75,19 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.447779, 0, 2.1284)
 [node name="Item3" parent="." instance=ExtResource("8_o1sou")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.21144, 2.38419e-07, 2.15007)
 Id = "egg"
+
+[node name="Tree" parent="." instance=ExtResource("9_7cu0w")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.32854, 0, 2.60119)
+Id = "tree"
+
+[node name="Tree2" parent="." instance=ExtResource("9_7cu0w")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.27145, -4.76837e-07, -0.71621)
+Id = "tree"
+
+[node name="Tree3" parent="." instance=ExtResource("9_7cu0w")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.67809, 0, -1.65883)
+Id = "tree"
+
+[node name="Tree4" parent="." instance=ExtResource("9_7cu0w")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.14043, 0, 1.75497)
+Id = "tree"

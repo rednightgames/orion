@@ -10,7 +10,8 @@ public class PathManager
     >()
     {
         { "characters://", "res://assets/characters/" },
-        { "items://", "res://assets/items/" }
+        { "items://", "res://assets/items/" },
+        { "objects://", "res://assets/objects/" }
     };
 
     public static string ResolveTexturePath(string path)

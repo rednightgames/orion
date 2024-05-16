@@ -8,34 +8,27 @@ public partial class Entity : Node3D
     private float _hungryValue = 100,
         hungryChange = 1,
         hungryBoost = 1;
-    public float HungryValue
-    {
-        set
-        {
-            if (value < 0)
-            {
+    public float HungryValue {
+        set {
+            if (value < 0) {
                 _hungryValue = hungryValueMin;
             }
-            else if (value > hungryValueMax)
-            {
+            else if (value > hungryValueMax) {
                 _hungryValue = hungryValueMax;
             }
-            else
-            {
+            else {
                 _hungryValue = value;
             }
         }
-        get { return _hungryValue; }
+        get {
+            return _hungryValue;
+        }
     }
-
-    public override void _Ready()
-    {
+    public override void _Ready() {
         DayNightCycle Cycle = GetParent().GetNode<DayNightCycle>("DayNightCycle");
         Cycle.timer.Timeout += TimerTimeout;
     }
-
-    public void TimerTimeout()
-    {
+    public void TimerTimeout() {
         HungryValue -= hungryChange * hungryBoost;
     }
 }

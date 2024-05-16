@@ -1,0 +1,6 @@
+{
+    "id": "tree",
+    "name": "Tree",
+    "description": "Looks like a normal tree",
+    "texture": "objects://trees.png"
+}
