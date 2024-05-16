@@ -4,3 +4,5 @@ lint:
 lint-fix:
 	dotnet csharpier .
 	
+restore:
+	yarn install && dotnet tool restore
