@@ -33,10 +33,13 @@ public partial class DayNightCycle : Node
         durationcycle = durationday + durationevening + durationnight;
         _dirLight = GetNode<DirectionalLight3D>("../DirectionalLight3D");
         _worldEnv = GetNode<WorldEnvironment>("../WorldEnvironment");
-        timer = new Timer();
-        timer.WaitTime = 1;
-        timer.OneShot = false;
-        timer.Autostart = true;
+        timer = new Timer
+        {
+            Name = "timer",
+            WaitTime = 1,
+            OneShot = false,
+            Autostart = true
+        };
         AddChild(timer);
         timer.Timeout += TimerTimeout;
     }

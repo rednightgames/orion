@@ -33,7 +33,7 @@ public partial class Item : InventoryItem
     {
         if (_id != null)
         {
-            TextureResource data = AssetManager.Load<TextureResource>(_id);
+            ItemData data = AssetManager.Load<ItemData>(_id);
             if (data != null)
             {
                 Name = data.Name;
@@ -42,4 +42,10 @@ public partial class Item : InventoryItem
             }
         }
     }
+}
+
+class ItemData : TextureResource
+{
+    public string Name;
+    public string Description;
 }

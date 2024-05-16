@@ -22,8 +22,8 @@ public partial class AssetManager : Node
         Func<string, object>
     >
     {
-        { "item", JsonConvert.DeserializeObject<TextureResource> },
-        { "object", JsonConvert.DeserializeObject<TextureResource> }
+        { "item", JsonConvert.DeserializeObject<ItemData> },
+        { "object", JsonConvert.DeserializeObject<ObjectData> }
     };
 
     private static readonly Dictionary<string, object> _cache = new Dictionary<string, object>();

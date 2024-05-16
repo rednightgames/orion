@@ -2,5 +2,6 @@
     "id": "tree",
     "name": "Tree",
     "description": "Looks like a normal tree",
+    "test": false,
     "texture": "objects://trees.png"
 }

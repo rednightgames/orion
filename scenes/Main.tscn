@@ -1,13 +1,13 @@
 [gd_scene load_steps=12 format=3 uid="uid://ykpdkwi1bhfp"]
 
 [ext_resource type="Script" path="res://src/Main.cs" id="1_kc2wc"]
-[ext_resource type="PackedScene" uid="uid://dlg2y62ce7ppg" path="res://scenes/Berry_bush.tscn" id="3_xg5tp"]
+[ext_resource type="PackedScene" uid="uid://bj63q4c6ounse" path="res://scenes/Berry_bush.tscn" id="3_xg5tp"]
 [ext_resource type="PackedScene" uid="uid://bl87xmfiecoj8" path="res://scenes/day_night_cycle.tscn" id="4_ub5dq"]
-[ext_resource type="MeshLibrary" uid="uid://djtu7dmxv8yjq" path="res://1111.tres" id="7_8dx0x"]
+[ext_resource type="MeshLibrary" uid="uid://cjo4j0jug6mqh" path="res://1111.tres" id="7_8dx0x"]
 [ext_resource type="PackedScene" uid="uid://b7iupg4owehov" path="res://scenes/Entity.tscn" id="7_fxps0"]
 [ext_resource type="PackedScene" uid="uid://c0q3bnah71v8a" path="res://scenes/Cow.tscn" id="8_e30q4"]
 [ext_resource type="PackedScene" uid="uid://dqp6s08ipcq5c" path="res://scenes/Item.tscn" id="8_o1sou"]
-[ext_resource type="PackedScene" uid="uid://cxd0ecua3mo8u" path="res://scenes/Object.tscn" id="9_7cu0w"]
+[ext_resource type="PackedScene" uid="uid://uh828t71ooun" path="res://scenes/Object.tscn" id="9_7cu0w"]
 
 [sub_resource type="Environment" id="Environment_vv2o1"]
 background_mode = 1
@@ -18,8 +18,6 @@ glow_hdr_threshold = 1.85
 [sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_gmb4t"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_ix7je"]
-vertices = PackedVector3Array(-0.985284, 0.5, 3.92893, 0.264716, 0.5, 4.92893, 2.26472, 0.5, 2.67893, -1.73528, 0.5, 3.92893, -0.985284, 0.5, 3.92893, 2.26472, 0.5, 2.67893, 1.01472, 0.5, -4.07107, -1.23528, 0.5, -6.57107, -7.98528, 0.5, -0.0710702, 3.26472, 0.5, 2.67893, 4.51472, 0.5, 3.67893, 8.01472, 0.5, 0.17893, 2.26472, 0.5, 2.67893, 3.26472, 0.5, 2.67893, 8.01472, 0.5, 0.17893, 3.01472, 0.5, -5.07107, 1.76472, 0.5, -4.07107, -7.98528, 0.5, -0.0710702, -2.98528, 0.5, 5.17893, -1.73528, 0.5, 3.92893, 2.26472, 0.5, 2.67893, 1.76472, 0.5, -4.07107, 1.01472, 0.5, -4.07107)
-polygons = [PackedInt32Array(2, 1, 0), PackedInt32Array(4, 3, 5), PackedInt32Array(5, 3, 6), PackedInt32Array(6, 3, 7), PackedInt32Array(7, 3, 8), PackedInt32Array(11, 10, 9), PackedInt32Array(13, 12, 14), PackedInt32Array(14, 12, 16), PackedInt32Array(14, 16, 15), PackedInt32Array(19, 18, 17), PackedInt32Array(22, 21, 20)]
 agent_radius = 0.3
 
 [node name="Level" type="Node3D"]
